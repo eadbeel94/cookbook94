@@ -1,0 +1,82 @@
+.modal{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #28546799;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+
+  display: none;
+}
+
+.mShow{
+  display: inline;
+}
+
+.modal-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.modal-quad{
+  position: sticky;
+  width: 600px;
+  background-color: var(--colorA);
+  border: 1px solid var(--colorE);
+  border-radius: 0.5rem;
+}
+
+.modal-header{
+  background-color: var(--colorB);
+  border: 1px solid var(--colorE);
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
+  text-align: center;
+  color: var(--colorE);
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  font-family: cursive;
+}
+
+.modal-close{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.modal-close button{
+  background-color: transparent;
+  color: var(--colorE);
+  border: 1px solid var(--colorB);
+  padding: 0.25rem;
+  font-size: 20px;
+}
+
+.modal-close button:hover{
+  background-color: var(--colorE);
+  color: var(--colorA);
+}
+
+.modal-body{
+  padding: 1rem;
+  font-family: sans-serif;
+  color: whitesmoke;
+  height: 100px;
+  overflow-y: auto;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-footer{
+  background-color: var(--colorB);
+  border: 1px solid var(--colorE);
+  border-radius: 0rem 0rem 0.5rem 0.5rem;
+  text-align: center;
+  color: var(--colorE);
+  padding-inline: 0.5rem;
+  font-size: 1.5rem;
+  font-family: cursive;
+}
