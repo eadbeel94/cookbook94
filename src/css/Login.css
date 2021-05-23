@@ -1,0 +1,24 @@
+.login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.login-left{
+  background-color: var(--colorA);
+  border: var(--colorD) solid 5px;
+  width: 40%;
+  height: 100%; 
+  padding: 1.25rem;
+  border-radius: 3rem 0rem 0rem 0rem;
+}
+
+.login-right{
+  background-color: var(--colorD);
+  width: 60%;
+  height: 100%; 
+  padding: 1.25rem;
+  border-radius: 0rem 0rem 3rem 0rem;
+}

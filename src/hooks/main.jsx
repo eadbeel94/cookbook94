@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export const useModal1= ({ req, mess , theme , cb }) => {
+export const useModal= ({ req, mess , theme , cb }) => {
   const [show, setShow] = useState({ req , mess , theme , cb });
 
   const setMessage= (newMessage)=> setShow({ ...show, req: true , mess: newMessage });

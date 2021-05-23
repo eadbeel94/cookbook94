@@ -1,0 +1,86 @@
+.modalM{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #19222fc9;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+
+  display: none;
+}
+
+.modalM-show{
+  display: block;
+}
+
+.modalM-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.modalM-quad{
+  position: sticky;
+  width: 600px;
+  background-color: var(--colorA);
+  border: 1px solid var(--colorE);
+  border-radius: 0.5rem;
+}
+
+.modalM-header{
+  background-color: var(--colorB);
+  border: 1px solid var(--colorE);
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
+  text-align: center;
+  color: var(--colorE);
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  font-family: cursive;
+}
+
+.modalM-close{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.modalM-close button{
+  background-color: transparent;
+  color: var(--colorE);
+  border: 1px solid var(--colorB);
+  padding: 0.25rem;
+  font-size: 20px;
+}
+
+.modalM-close button:hover{
+  background-color: var(--colorE);
+  color: var(--colorA);
+}
+
+.modalM-body{
+  padding: 1rem;
+  font-family: sans-serif;
+  color: whitesmoke;
+  min-height: 150px;
+  max-height: 350px;
+  overflow-y: auto;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.modalM-footer{
+  background-color: var(--colorB);
+  border: 1px solid var(--colorE);
+  border-radius: 0rem 0rem 0.5rem 0.5rem;
+  text-align: center;
+  color: var(--colorE);
+  padding: 0.25rem;
+  font-size: 1.5rem;
+  font-family: cursive;
+
+}
