@@ -21,6 +21,7 @@ app.use( cors() );
 app.use( express.json() );
 app.use( express.urlencoded({ extended: true }) );
 
+/*
 if( HOT_REL ){
   console.log('hot reload activated' )
   const { createServer } = require("livereload");
@@ -33,6 +34,7 @@ if( HOT_REL ){
   
   app.use(connectLivereload());
 }
+*/
 
 //--------------------------- Routes ---------------------------
 require('./routes/apiRoutes.js')(app);

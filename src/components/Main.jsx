@@ -2,29 +2,61 @@ import { useState , useEffect } from 'react'
 
 import ModalMessage from './ModalMessage.jsx';
 import ModalAdd from './ModalAdd.jsx';
+import OneCard from './OneCard.jsx';
+import Empty from './Empty.jsx';
 
 import { useModal } from '../hooks/main.jsx';
+import { fetchSend , IP } from '../js/helper.js';
 
 export default function Main(props) {
   const {  }= props;
 
   const [ modalM , , , , setMessAThemeM , , initModalM ]= useModal({ req: false, mess: "" , theme: 0 , cb: ()=>{} });
-  const [showModalAdd, setShowModalAdd] = useState(false);
+  const [ showModalAdd, setShowModalAdd ] = useState(false);
+  const [ recipes, setRecipes ] = useState([])
 
-  const createRecipe= (send)=>{
-    console.log(15,send);
+  const getAllRecipes= async() => {
+    const url= `${IP}/recipes/getAll`
+    const { stat , data , mess }= await fetchSend( url );
+    console.log( data )
+    setRecipes(data);
+  };
+
+  useEffect(() => {
+    getAllRecipes();
+  }, []);
+
+  const createRecipe= async (send)=>{
+    const url= `${IP}/recipes/addOne`
+    const { stat , data , mess }= await fetchSend( url , "POST" , send );
+    setMessAThemeM( mess , 2 );
+    stat && setRecipes(data);
   };
 
   return (
     <>
-      <div id="lbl_Empty" className="flex-center">
-        <div className="has-text-centered has-text-primary">
-          <h5 className="is-size-2">You have no recipes</h5>
-          <p style={{ fontSize: "100px" }}>😔</p>
-        </div>
-      </div>
+      {
+        0 >= recipes.length && <Empty/>
+      }
 
-      <div id="btn_add" style={{ position: "fixed", top: "0px" , width: "100%" , height: "100%" , zIndex: "5" }}>
+      <blockquote className="container mt-5">
+        <div className="columns is-multiline">
+          
+          <div className="column is-12">
+            <p className="is-size-1 has-text-centered has-text-white">YOUR RECIPE LIST</p>
+          </div>
+
+          {
+            recipes.length > 0 && recipes.map( recipe => <div key= { `col-${recipe._id}` } className="column is-6">
+                <OneCard recipe= { recipe } />
+              </div> 
+            )
+          }
+        </div>
+      </blockquote>
+
+
+      <div id="btn_add" style={{ zIndex: "5" }}>
         <div style={{ position: "fixed" , bottom: "20px" , right: "20px" }}>
           <button
             onClick= { ()=> setShowModalAdd( true ) }

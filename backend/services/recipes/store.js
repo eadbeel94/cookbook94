@@ -1,4 +1,4 @@
-const { File }= require('../../model/main.js');
+const { Recipe }= require('../../model/main.js');
 
 class GroupFiles{
   constructor(){
@@ -7,32 +7,32 @@ class GroupFiles{
 
   async getAll(){
     try {
-      return await File.find();
+      return await Recipe.find();
     } catch (error) { throw error };
   };
 
   async getOne( id ){
     try {
-      return await File.findById( id );
+      return await Recipe.findById( id );
     } catch (error) { throw error };
   };
 
   async addOne(group){
     try {
-      const newNote= new File(group);
-      await newNote.save();
+      const newRecipe= new Recipe(group);
+      await newRecipe.save();
     } catch (error) { throw error };
   };
 
   async editOne( id , group ){
     try {
-      return await File.findByIdAndUpdate( id , group );
+      return await Recipe.findByIdAndUpdate( id , group );
     } catch (error) { throw error };
   };
 
   async delOne( id ){
     try {
-      return await File.findByIdAndRemove( id );
+      return await Recipe.findByIdAndRemove( id );
     } catch (error) { throw error };
   };
 };

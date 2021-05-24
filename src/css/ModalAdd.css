@@ -1,5 +1,5 @@
 .modalA{
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   background-color: #19222fc9;
@@ -63,8 +63,9 @@
   padding: 1rem;
   font-family: sans-serif;
   color: whitesmoke;
-  min-height: 400px;
-  max-height: 500px;
+  /*min-height: px;
+  max-height: 500px;*/
+  height: 75vh;
   overflow-y: auto;
 }
 
@@ -81,7 +82,7 @@
 }
 
 .recipe-left{
-  height: 400px;
+  height: 74vh;
   overflow-y: auto;
 }
 

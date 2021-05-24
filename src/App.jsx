@@ -1,9 +1,10 @@
 import 'bulma/css/bulma.min.css'
 import './css/App.css';
 import './css/Login.css';
+import './css/Main.css';
+import './css/OneCard.css';
 import './css/ModalAdd.css';
 import './css/ModalMessage.css';
-
 
 import {
   BrowserRouter as Router,
@@ -14,6 +15,7 @@ import {
 import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
 import Main from './components/Main.jsx';
+import Recipe from './components/Recipe.jsx';
 
 function App() { 
   return (
@@ -31,6 +33,9 @@ function App() {
           </Route>
           <Route path="/views/main">
             <Main />
+          </Route>
+          <Route path="/views/recipe">
+            <Recipe />
           </Route>
           <Route path="/">
             <Login />

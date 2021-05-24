@@ -42,9 +42,10 @@ router.get('/getOne/:id' /*, valid( noteIdSchema , "params" ) */ , async (req,re
 
 router.post('/addOne' /*, valid( createNoteSchema )*/ , async (req,res,next)=>{
   try {
-    const { body: note }= req;
-    await addOneElement(note);
-    res.json({ data: true , mess: "Add one element successfully" });
+    const { body: recipe }= req;
+    await addOneElement(recipe);
+    const data= await getAllElements();
+    res.json({ data , mess: "Add one element successfully" });
   } catch (error) {   next(error);    };
 });
 

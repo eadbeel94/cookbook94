@@ -30,4 +30,6 @@ const fetchSend= async( url="" , type="" , send )=>{
   return { stat, data , mess };
 };
 
-module.exports= { getError , fetchSend };
+const IP= `http://localhost:3001/api`
+
+module.exports= { getError , fetchSend , IP };

@@ -20,7 +20,7 @@ export default function ModalAdd(props) {
     setRecipe({
       title: title,
       list: extendedIngredients.map( el=> el.name ),
-      inst: instructions,
+      inst: instructions.replace( /(<([^>]+)>)/ig, ''),
       from: creditsText,
       desc: sourceUrl,
       image: image
@@ -46,15 +46,19 @@ export default function ModalAdd(props) {
     setRecipe({ ...recipe , [target.name]: target.value });
   };
 
-  const createItem= ()=>{
-    setModalM( "Do you wanna save this recipe in your cookbook?" , 3 , ()=> actCreate(recipe) );
-  }
-
   const closeAll= () =>{
     setRecipe(initRecipe);
     setMix(String(initRecipe.list.length));
     actClose();
   };
+
+  const createItem= ()=>{
+    setModalM( "Do you wanna save this recipe in your cookbook?" , 3 , ()=> {
+      actCreate(recipe);
+      initModalM();
+    });
+    closeAll();
+  }
 
   return (
     <>
