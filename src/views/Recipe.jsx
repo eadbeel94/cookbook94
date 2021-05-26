@@ -6,6 +6,7 @@ import m from 'dayjs';
 import '../css/Recipe.css';
 
 import ModalMessage from '../components/ModalMessage.jsx';
+import Navbar from '../components/Navbar.jsx';
 
 import { useModal } from '../hooks/main.jsx';
 import fetchSend from '../js/helper.js';
@@ -102,162 +103,181 @@ export default function Recipe() {
     });
   };
 
+  const reqLogout= ()=>{
+    setModalM("Do you wanna close this session?",3, async () =>{
+      initModalM();
+
+      const url= `/users/logout`;
+      const { stat , mess }= await fetchSend( url );
+
+      setMessATheme( mess , 2 );
+      stat && setTimeout(() => history.push('/'), 1000);
+    });
+  };
+
   return (
     <>
 
-      <div id="Recipe" className="container">
-        <div>
-          {
-            recipe.title.length > 0  && <blockquote className="card magictime vanishIn">
+      <div className="d-flex">
 
-              <header className="card-header" >
-                <p className="card-header-title is-size-2 has-text-white is-justify-content-center">
-                  RECIPE FULL INFORMATION 🍲
-                </p>
-              </header>
+        <Navbar actLogout= { reqLogout } />
 
-              <div className="card-content">
-                <div className="columns is-multiline">
+        <div id="Recipe" className="container">
+          <div>
+            {
+              recipe.title.length > 0  && <blockquote className="card magictime vanishIn">
 
-                  <div className="column is-3">
-                    <img src={ recipe.image } alt="" />
-                  </div>
+                <header className="card-header" >
+                  <p className="card-header-title is-size-2 has-text-white is-justify-content-center">
+                    RECIPE FULL INFORMATION 🍲
+                  </p>
+                </header>
 
-                  <div className="column is-9">
-                    <div className="field">
-                      <div className="control">
-                        <textarea 
-                          name= "title"
-                          value= { recipe.title }
-                          onChange= { handleChangeInps }
-                          className="textarea is-rounded"
-                          placeholder="Mix the elements in a bowl and launch" 
-                          rows="2"
-                        />
-                      </div>
+                <div className="card-content">
+                  <div className="columns is-multiline">
+
+                    <div className="column is-3">
+                      <img src={ recipe.image } alt="" />
                     </div>
-                  </div>
 
-                  <div className="column is-offset-1 is-5">
-
-                    <div className="field is-horizontal">
-                      <div className="field-label is-normal">
-                        <label className="label has-text-white is-size-5">Ingredients:</label>
-                      </div>
-                      <div className="field-body">
-                        <div className="field">
-                          <p className="control">
-                            <input 
-                              value= { mix } 
-                              onKeyDown= { setList }
-                              onChange= { setQuantity }
-                              className="input is-rounded has-text-right" 
-                              type="number"
-                              min= "1"
-                              max= "30" 
-                            />
-                          </p>
+                    <div className="column is-9">
+                      <div className="field">
+                        <div className="control">
+                          <textarea 
+                            name= "title"
+                            value= { recipe.title }
+                            onChange= { handleChangeInps }
+                            className="textarea is-rounded"
+                            placeholder="Mix the elements in a bowl and launch" 
+                            rows="2"
+                          />
                         </div>
                       </div>
                     </div>
 
-                    <section className="columns is-multiline mt-1">
-                      {
-                        recipe.list.length > 0 && recipe.list.map( (el,ind) => <div key={ `col-${ind}` } className="column is-6">
-                            <div className="field">
-                              <div className="control">
-                                <input data-id={ind} value={ el } className="input is-rounded" type="text" onChange= { handleChangeList } />
+                    <div className="column is-offset-1 is-5">
+
+                      <div className="field is-horizontal">
+                        <div className="field-label is-normal">
+                          <label className="label has-text-white is-size-5">Ingredients:</label>
+                        </div>
+                        <div className="field-body">
+                          <div className="field">
+                            <p className="control">
+                              <input 
+                                value= { mix } 
+                                onKeyDown= { setList }
+                                onChange= { setQuantity }
+                                className="input is-rounded has-text-right" 
+                                type="number"
+                                min= "1"
+                                max= "30" 
+                              />
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <section className="columns is-multiline mt-1">
+                        {
+                          recipe.list.length > 0 && recipe.list.map( (el,ind) => <div key={ `col-${ind}` } className="column is-6">
+                              <div className="field">
+                                <div className="control">
+                                  <input data-id={ind} value={ el } className="input is-rounded" type="text" onChange= { handleChangeList } />
+                                </div>
+                                <label className="label has-text-white p-1">Ingredient { String.fromCharCode(65 + ind) }</label>
                               </div>
-                              <label className="label has-text-white p-1">Ingredient { String.fromCharCode(65 + ind) }</label>
-                            </div>
-                          </div> 
-                        )
-                      }
-                    </section>
-                  </div>
+                            </div> 
+                          )
+                        }
+                      </section>
+                    </div>
 
-                  <div className="column is-5">
-                    <label className="label has-text-white is-size-5">Instructions:</label>
+                    <div className="column is-5">
+                      <label className="label has-text-white is-size-5">Instructions:</label>
 
-                    <div className="field mt-4">
-                      <div className="control">
-                        <textarea 
-                          name= "inst"
-                          value= { recipe.inst }
-                          onChange= { handleChangeInps }
-                          className="textarea is-rounded"
-                          placeholder="Mix the elements in a bowl and launch" 
-                          rows="10"
-                        />
+                      <div className="field mt-4">
+                        <div className="control">
+                          <textarea 
+                            name= "inst"
+                            value= { recipe.inst }
+                            onChange= { handleChangeInps }
+                            className="textarea is-rounded"
+                            placeholder="Mix the elements in a bowl and launch" 
+                            rows="10"
+                          />
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div className="column is-offset-1 is-5">
+                      <label className="label has-text-white is-size-5">Notes:</label>
+
+                      <div className="field mt-4">
+                        <div className="control">
+                          <textarea 
+                            name= "desc"
+                            value= { recipe.desc }
+                            onChange= { handleChangeInps }
+                            className="textarea is-rounded"
+                            placeholder="Mix the elements in a bowl and launch" 
+                            rows="2"
+                          />
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div className="column is-5">
+                      <label className="label has-text-white is-size-5">Author/Credits:</label>
+
+                      <div className="field mt-4">
+                        <div className="control">
+                          <textarea 
+                            name= "from"
+                            value= { recipe.from }
+                            onChange= { handleChangeInps }
+                            className="textarea is-rounded"
+                            placeholder="Mix the elements in a bowl and launch" 
+                            rows="2"
+                          />
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                    <div className="column is-offset-1 is-5">
+                      <div className="date">
+                        <label className="label has-text-white is-size-5">Recipe created:</label>
+                        <label className="has-text-white is-size-5">{ recipe.datec }</label>
+                      </div>
+                    </div>
+
+                    <div className="column is-5">
+                      <div className="date">
+                        <label className="label has-text-white is-size-5">Last modification:</label>
+                        <label className="has-text-white is-size-5">{ recipe.datem }</label>
                       </div>
                     </div>
 
                   </div>
-
-                  <div className="column is-offset-1 is-5">
-                    <label className="label has-text-white is-size-5">Notes:</label>
-
-                    <div className="field mt-4">
-                      <div className="control">
-                        <textarea 
-                          name= "desc"
-                          value= { recipe.desc }
-                          onChange= { handleChangeInps }
-                          className="textarea is-rounded"
-                          placeholder="Mix the elements in a bowl and launch" 
-                          rows="2"
-                        />
-                      </div>
-                    </div>
-
-                  </div>
-
-                  <div className="column is-5">
-                    <label className="label has-text-white is-size-5">Author/Credits:</label>
-
-                    <div className="field mt-4">
-                      <div className="control">
-                        <textarea 
-                          name= "from"
-                          value= { recipe.from }
-                          onChange= { handleChangeInps }
-                          className="textarea is-rounded"
-                          placeholder="Mix the elements in a bowl and launch" 
-                          rows="2"
-                        />
-                      </div>
-                    </div>
-
-                  </div>
-
-
-                  <div className="column is-offset-1 is-5">
-                    <div className="date">
-                      <label className="label has-text-white is-size-5">Recipe created:</label>
-                      <label className="has-text-white is-size-5">{ recipe.datec }</label>
-                    </div>
-                  </div>
-
-                  <div className="column is-5">
-                    <div className="date">
-                      <label className="label has-text-white is-size-5">Last modification:</label>
-                      <label className="has-text-white is-size-5">{ recipe.datem }</label>
-                    </div>
-                  </div>
-
                 </div>
-              </div>
 
-              <footer className="card-footer py-1">
-                <button className="button card-footer-item m-1" onClick= { deleteRecipe } >Delete ✖ </button>
-                <button className="button card-footer-item m-1" onClick= { genRandom } > Gen Random Recipe 🔄 </button>
-                <button className="button card-footer-item m-1" onClick= { editRecipe } > Save changes 💾 </button>
-              </footer>
+                <footer className="card-footer py-1">
+                  <button className="button card-footer-item m-1" onClick= { deleteRecipe } >Delete ✖ </button>
+                  <button className="button card-footer-item m-1" onClick= { genRandom } > Gen Random Recipe 🔄 </button>
+                  <button className="button card-footer-item m-1" onClick= { editRecipe } > Save changes 💾 </button>
+                </footer>
 
-            </blockquote>
-          }
+              </blockquote>
+            }
+          </div>
         </div>
+
       </div>
+
       <ModalMessage
         show= { modalM.req }
         theme= { modalM.theme } 

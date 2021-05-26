@@ -1,5 +1,5 @@
 #Main{
-  min-height: 92vh;
+  min-height: 90.4vh;
 }
 
 #Main > div > div.column.is-12 > p{
@@ -19,4 +19,14 @@
 #btn_add button{
   font-size: 50px;
   border: var(--colorA) solid 0.25rem;
+}
+
+@media (max-width: 1050px) {
+  #Main{
+    max-width: calc(100% - 55px);
+    margin-inline: 0.25rem;
+  }
+  #Main .card-content{
+    padding: 0.85rem;
+  }
 }

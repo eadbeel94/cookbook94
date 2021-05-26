@@ -2,7 +2,7 @@ const { Router }= require('express');
 const router= Router();
 
 const { checkLogged } = require('../../utils/middlewares/authHandler.js');
-//const { AUTH_ENABLE }= require('../../utils/config.js');
+const { NOT_AUTH , TEST_ID }= require('../../utils/config.js');
 
 const { 
   getAllElements,
@@ -19,11 +19,15 @@ const { recipeIdSchema, recipeSchema }= require('../../utils/schema/validSchema.
 router.get('/getAll', checkLogged , async (req,res,next)=>{
   try {
     const { passport }= req.session;
-    const data= { username:  String( passport.user.fullname || 'UNKNOWN' ).toUpperCase()  };
+    const data= { username: String( passport ? passport.user.fullname : 'UNKNOWN' ).toUpperCase()  };
 
-    const userID= passport.user.id;
+    let userID= "";
+    if( passport ) userID= passport.user.id;
+    if( NOT_AUTH ) userID= TEST_ID;
+
     const list= await getAllElements( userID );
     data.list= list;
+    delete req.session.amessage;
     
     res.json({ data , mess: "Get all elements successfully" });
   } catch (error) {   next(error);    };
@@ -32,9 +36,11 @@ router.get('/getAll', checkLogged , async (req,res,next)=>{
 router.get('/getOne/:id' , checkLogged, valid( recipeIdSchema , "params" ) , async (req,res,next)=>{
   try {
     const { id: recipeID }= req.params;
-    const { session }= req;
+    const { passport }= req.session;
 
-    const userID= session.passport.user.id;
+    let userID= "";
+    if( passport ) userID= passport.user.id;
+    if( NOT_AUTH ) userID= TEST_ID;
 
     const data= await getOneElement( recipeID , userID );
     res.json({ data , mess: "Get one element successfully" });
@@ -45,9 +51,11 @@ router.post('/addOne' , checkLogged , valid( recipeSchema ) , async (req,res,nex
   try {
     const { body: recipe , session }= req;
 
-    const userID= session.passport.user.id;
-    await addOneElement( recipe , userID );
+    let userID= "";
+    if( session.passport )  userID= session.passport.user.id;
+    if( NOT_AUTH )          userID= TEST_ID;
 
+    await addOneElement( recipe , userID );
     const data= await getAllElements(userID);
     res.json({ data , mess: "Add one element successfully" });
   } catch (error) {   next(error);    };
@@ -62,7 +70,10 @@ router.put('/editOne/:id',
       const { id: recipeID }= req.params;
       const { body: recipe , session }= req;
 
-      const userID= session.passport.user.id;
+      let userID= "";
+      if( session.passport )  userID= session.passport.user.id;
+      if( NOT_AUTH )          userID= TEST_ID;
+
       await editOneElement( recipeID, recipe, userID );
       res.json({ data: true , mess: "Edit One elements successfully" });
     } catch (error) {   next(error);    };
@@ -74,7 +85,10 @@ router.delete('/delOne/:id' , checkLogged, valid( recipeIdSchema , "params" ) , 
     const { id: recipeID }= req.params;
     const { passport }= req.session;
 
-    const userID= passport.user.id;
+    let userID= "";
+    if( session.passport )  userID= passport.user.id;
+    if( NOT_AUTH )          userID= TEST_ID;
+
     await delOneElement( recipeID , userID );
     res.json({ data: true , mess: "Delete one element successfully" });
   } catch (error) {   next(error);    };

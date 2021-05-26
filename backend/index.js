@@ -34,13 +34,11 @@ app.use(passport.session());                          //Inicialize session
 
 //--------------------------- Routes ---------------------------
 require('./routes/apiRoutes.js')(app);
-//require('./routes/viewsRoutes.js')(app);
-//app.get('/', ( req , res ) => res.redirect('/views/') );    //redirect
 
 //--------------------------- Static files ---------------------------
 //app.use( express.static( join(__dirname, '../build') ) );
 app.use('/static', express.static(    join(__dirname, '../build/static')   ));
-app.get('*', function(req, res) {
+app.get('*', (req, res) => {
   res.sendFile('index.html', {  root: join(__dirname, '../build/')  } );
 });
 

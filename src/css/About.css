@@ -1,0 +1,49 @@
+#about .card{
+  background-color: #19222fe9;
+  color: whitesmoke;
+  border: var(--colorE) solid 0.2rem;
+  border-radius: 1rem 0 1rem 0;
+}
+
+#about .card-header-title{
+  color: var(--colorE);
+  justify-content: center;
+  font-family: var(--title);
+  line-height: normal;
+  font-size: 1.5rem;
+}
+
+#about .card-content{
+  font-family: var(--bodyA);
+}
+
+#about li::marker{
+  display: none;
+  color: transparent;
+}
+
+#about .menu-list li ul{
+  border: 0;
+}
+
+#about .menu-list a{
+  color: whitesmoke;
+}
+
+#about .menu-list a:hover{
+  color: var(--colorA);
+  background-color: var(--colorE);
+}
+
+@media (max-width: 1050px) {
+  #about{
+    max-width: calc(100% - 55px);
+    margin-inline: 0.25rem;
+  }
+  #about .card-content{
+    padding: 0.85rem;
+  }
+  #about ul{
+    margin-top: 0;
+  }
+}

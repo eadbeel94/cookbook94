@@ -183,11 +183,11 @@ export default function ModalAdd(props) {
                 </section>
                 <section className="column is-3">
                   <div className="recipe-img">
-                    <div style={{ minHeight: "50%" , width: "100%" , backgroundColor: "var(--colorB)" , display: "flex" , alignItems: "center" }}>
+                    <div>
                       <img src= { recipe.image } alt="" />
                     </div>
                   </div>
-                  <label className="label has-text-white p-2" style={{ position: "relative" , bottom: "125px" }}>Preview</label>
+                  <label className="label has-text-white recipe-preview p-2">Preview</label>
                 </section>
               </div>
             </blockquote>

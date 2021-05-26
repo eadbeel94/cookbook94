@@ -93,6 +93,19 @@
   justify-content: center;
 }
 
+.recipe-img > div{
+  min-height: 50%;
+  width: 100%;
+  background-color: var(--colorB);
+  display: flex;
+  align-items: center;
+}
+
+.recipe-preview{
+  position: relative;
+  bottom: 125px;
+}
+
 .modalA label{
   font-family: var(--bodyA);
   /*text-transform: uppercase;*/

@@ -4,5 +4,6 @@ module.exports= {
   HOT_REL:  process.env.HOT_RELOAD != "false",
   PORT:     process.env.PORT || '3001',
   DB_URI:   process.env.MONGO_URI,
-  AUTH_ENABLE: process.env.AUTH_ENABLE || true
+  NOT_AUTH: Boolean(process.env.NOT_AUTH),
+  TEST_ID:  process.env.TEST_ID
 }

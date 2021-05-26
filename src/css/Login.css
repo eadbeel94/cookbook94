@@ -4,6 +4,7 @@
   align-items: center;
   width: 100%;
   height: 92.5vh;
+  animation-duration: 0.5s;
 }
 
 .login > div{
@@ -26,13 +27,15 @@
   height: 100%;
   width: 95%;
   margin: auto;
+  display: grid;
+  overflow: hidden;
 }
 
 .login-image{
   background-color: var(--colorD);
   width: 150px;
   height: 150px;
-  margin: 2rem auto auto;
+  margin: 1.5rem auto auto;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -87,6 +90,68 @@
 }
 
 
+@media (max-width: 1000px) {
+  .login > div{
+    width: 95%;
+  }
+}
+
+@media (max-width: 800px) {
+  .login{
+    height: unset;
+    min-height: 92.5vh;
+  }
+  .login > div{
+    width: 95%;
+    display: block;
+  }
+  .login-left{
+    width: 100%;
+    height: 200px;
+    padding: 0.5rem;
+  } 
+  .login-image{
+    width: 75px;
+    height: 75px;
+    margin-top: 1rem !important;
+  }
+  .login-left > div > div.has-text-centered{
+    margin-top: 1rem !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .login-left h5{
+    font-size: 2rem;
+  }
+  .login-left h6 {
+    font-size: 2.5rem;
+    padding-left: 1rem;
+  }
+
+  .login-right{
+    width: 100% !important;
+    padding: 0rem 0rem 1.25rem 0rem !important;
+  }
+  .login-right svg{
+    width: 75px !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .login-left h5{
+    display: none;
+  }
+  .login-left h6 {
+    padding: 0;
+  }
+  .login-right input{
+    font-size: 1rem !important;
+  }
+  .login-right button{
+    font-size: 1rem !important;
+  }
+}
 
 .login-right{
   background-color: var(--colorD);
@@ -100,10 +165,12 @@
   height: 100%;
   width: 70%;
   margin: auto;
+  overflow: hidden;
+  display: grid;
 }
 
 .login-right svg{
-  width: 100px;
+  width: 8vw;
   height: auto;
   color: var(--colorA);
 }
@@ -118,8 +185,6 @@
 }
 
 .login-right button{
-  background-color: var(--colorB);
-  color: white;
   font-family: var(--title);
   text-transform: uppercase;
   line-height: normal;
@@ -127,18 +192,23 @@
   border: 0.15rem solid; 
 }
 
-.login-right button:hover,
-.login-right button:focus{
+.login-right .btn-login{
+  background-color: var(--colorB);
+  color: white;
+}
+
+.login-right .btn-login:hover,
+.login-right .btn-login:focus{
   color: var(--colorE);
   border-color: var(--colorE);
 }
 
-.login-right button:nth-child(1){
+.login-right .btn-register:nth-child(1){
   background-color: var(--colorE);
   color: var(--colorA);
 }
 
-.login-right button:nth-child(1):hover{
+.login-right .btn-register:nth-child(1):hover{
   color: whitesmoke;
   border-color: whitesmoke;
 }

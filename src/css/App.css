@@ -60,6 +60,10 @@ body{
   width: 15%;
 }
 
+.has-background{
+  background-color: transparent;
+}
+
 .input, .textarea{
   background-color: var(--colorB);
   color: whitesmoke;
@@ -81,6 +85,14 @@ body{
   align-items: center;
   width: 100%;
   height: 100vh;
+}
+
+.d-flex{
+  display: flex !important;
+}
+
+.d-none{
+  display: none !important;
 }
 
 /*----------------------------------- Background common styles -----------------------------------*/
@@ -147,11 +159,63 @@ body{
   padding-top: 23rem;
 }
 
+@media (max-width: 1200px) {
+  .figureA{
+    width: 650px;
+    height: 300px;
+    clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+  }
+
+  .figureB{
+    width: 500px;
+    height: 250px;
+    clip-path: polygon(100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .figureC > p{
+    font-size: 5rem;
+    top: -4rem;
+  }
+
+  .figureC > img{
+    height: auto;
+    width: 150px;
+    padding-top: 12rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .figureA{
+    width: 650px;
+    height: 300px;
+    clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+  }
+
+  .figureB{
+    width: 500px;
+    height: 250px;
+    clip-path: polygon(100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .figureC > p{
+    font-size: 3.5rem;
+    left: 20px;
+    top: -30px;
+  }
+
+  .figureC > img{
+    height: auto;
+    width: 100px;
+    padding-top: 10rem;
+  }
+}
+
 /*----------------------------------- Footer common styles -----------------------------------*/
 
 footer{
   background-color: #19222fdf;
   min-height: 7.5vh;
+  text-align: center;
 }
 
 footer > div{
@@ -169,6 +233,12 @@ footer a{
 
 footer a:hover{
   color: whitesmoke;
+}
+
+@media (max-width: 500px) {
+  footer > div{
+    display: inline;
+  }
 }
 
 /*----------------------------------- 404 styles -----------------------------------*/
@@ -193,4 +263,17 @@ footer a:hover{
   transform: rotate(-26deg);
   font-family: kaushan;
   font-size: 3rem;
+}
+
+#lbl_Empty{
+  height: 92.5vh;
+}
+
+#lbl_Empty > div{
+  background-color: rgba(25,34,47,0.75);
+  font-family: var(--title);
+} 
+
+.emoji1{
+  font-size: 5rem;
 }

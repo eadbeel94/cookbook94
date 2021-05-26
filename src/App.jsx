@@ -1,13 +1,6 @@
 import 'bulma/css/bulma.min.css';
 import 'magic.css/dist/magic.min.css';
 import './css/App.css';
-//import './css/Login.css';
-//import './css/Main.css';
-//import './css/Register.css';
-//import './css/Recipe.css';
-//import './css/OneCard.css';
-//import './css/ModalAdd.css';
-//import './css/ModalMessage.css';
 
 import back1 from './assets/images/back1.png';
 
@@ -22,6 +15,7 @@ import Register from './views/Register.jsx';
 import Main from './views/Main.jsx';
 import Recipe from './views/Recipe.jsx';
 import View404 from './views/404.jsx';
+import About from './views/About.jsx';
 
 function App() { 
   return (
@@ -38,10 +32,11 @@ function App() {
 
         <Switch>
           <Route exact path="/" component= { Login } />
-          <Route exact path="/views/Login" component= { Login } />
+          <Route exact path="/views/login" component= { Login } />
           <Route exact path="/views/main" component= { Main } />
           <Route exact path="/views/register" component= { Register } />
           <Route exact path="/views/recipe/:id" component= { Recipe } />
+          <Route exact path="/views/about" component= { About } />
           
           <Route path="*" component= { View404 } />
         </Switch>

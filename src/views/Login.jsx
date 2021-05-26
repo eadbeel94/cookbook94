@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link , useHistory } from "react-router-dom";
 
 import '../css/Login.css';
-
 import back1 from '../assets/images/back2.png';
 
 import { ReactComponent as Icon1 } from '../assets/images/facebook.svg';
@@ -66,30 +65,36 @@ export default function Login() {
 
             <form onSubmit= { reqLogin } >
 
-              <div className="mb-5 mt-2">
-                <Icon5 /> 
-              </div>
+              <section></section>
 
-              <div className="field">
-                <div className="control">
-                  <input className="input is-rounded" type="text" placeholder="Username" name="username" value= { userInfo.username } onChange= { handleChange } autoComplete="off" />
+              <section>
+                <div className="my-4">
+                  <Icon5 /> 
                 </div>
-              </div>
 
-              <div className="field mb-6">
-                <div className="control">
-                  <input className="input is-rounded" type="password" placeholder="Password" name="password" value= { userInfo.password } onChange= { handleChange } />
+                <div className="field">
+                  <div className="control">
+                    <input className="input is-rounded" type="text" placeholder="Username" name="username" value= { userInfo.username } onChange= { handleChange } autoComplete="off" />
+                  </div>
                 </div>
-              </div>
 
-              <button type="submit" className="button is-fullwidth is-rounded mb-3">
-                Login
-              </button>
-              <Link to="/views/register">
-                <button type="button" className="button is-fullwidth is-rounded">
-                  Register user
+                <div className="field">
+                  <div className="control">
+                    <input className="input is-rounded" type="password" placeholder="Password" name="password" value= { userInfo.password } onChange= { handleChange } />
+                  </div>
+                </div>
+              </section>
+
+              <section>
+                <button type="submit" className="button is-fullwidth is-rounded btn-login my-2">
+                  Login
                 </button>
-              </Link>
+                <Link to="/views/register">
+                  <button type="button" className="button is-fullwidth is-rounded btn-register">
+                    Register user
+                  </button>
+                </Link>
+              </section>
 
             </form>
           

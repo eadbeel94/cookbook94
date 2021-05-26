@@ -1,0 +1,42 @@
+#navbar{
+  min-height: 92vh;
+  width: 60px;
+  position: inherit;
+  overflow: hidden;
+  display: grid;
+  background-color: var(--colorA);
+}
+
+#navbar button{
+  display: block;
+  height: 93%;
+  margin: 0.3rem;
+  width: 50px;
+  padding: 0;
+}
+
+#navbar svg{
+  height: 2rem;
+  width: 2rem;
+}
+
+#navbar p{
+  transform: rotate(-90deg);
+  font-family: var(--title);
+  font-size: 1.5rem;
+  margin-top: 4rem;
+  align-items: center;
+}
+
+@media (max-width: 1050px) {
+  #navbar{
+    width: 50px;
+  }
+  #navbar button{
+    width: 35px;
+  }
+  #navbar svg{
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
