@@ -1,6 +1,8 @@
 const { Router }= require('express');
-
 const router= Router();
+
+const { checkLogged } = require('../../utils/middlewares/authHandler.js');
+//const { AUTH_ENABLE }= require('../../utils/config.js');
 
 const { 
   getAllElements,
@@ -10,62 +12,70 @@ const {
   delOneElement
 }= require('./index.js');
 
-//const valid= require('../../utils/middlewares/validHandler.js');
+const valid= require('../../utils/middlewares/validHandler.js');
 
-const { 
-  noteIdSchema,
-  createNoteSchema,
-  updateNoteSchema
-}= require('../../utils/schema/validNotes.js');
+const { recipeIdSchema, recipeSchema }= require('../../utils/schema/validSchema.js');
 
-router.get('/getAll', async (req,res,next)=>{
+router.get('/getAll', checkLogged , async (req,res,next)=>{
   try {
-    const data= await getAllElements();
-    /*
-    const error = require('@hapi/boom').badRequest('Simulate error');
-    error.output.statusCode = 500;
-    error.reformat();
-    error.output.payload.custom = 'Simulate error';
-    throw error;
-    */
+    const { passport }= req.session;
+    const data= { username:  String( passport.user.fullname || 'UNKNOWN' ).toUpperCase()  };
+
+    const userID= passport.user.id;
+    const list= await getAllElements( userID );
+    data.list= list;
+    
     res.json({ data , mess: "Get all elements successfully" });
   } catch (error) {   next(error);    };
 });
 
-router.get('/getOne/:id' /*, valid( noteIdSchema , "params" ) */ , async (req,res,next)=>{
+router.get('/getOne/:id' , checkLogged, valid( recipeIdSchema , "params" ) , async (req,res,next)=>{
   try {
-    const { id }= req.params;
-    const data= await getOneElement(id);
+    const { id: recipeID }= req.params;
+    const { session }= req;
+
+    const userID= session.passport.user.id;
+
+    const data= await getOneElement( recipeID , userID );
     res.json({ data , mess: "Get one element successfully" });
   } catch (error) {   next(error);    };
 });
 
-router.post('/addOne' /*, valid( createNoteSchema )*/ , async (req,res,next)=>{
+router.post('/addOne' , checkLogged , valid( recipeSchema ) , async (req,res,next)=>{
   try {
-    const { body: recipe }= req;
-    await addOneElement(recipe);
-    const data= await getAllElements();
+    const { body: recipe , session }= req;
+
+    const userID= session.passport.user.id;
+    await addOneElement( recipe , userID );
+
+    const data= await getAllElements(userID);
     res.json({ data , mess: "Add one element successfully" });
   } catch (error) {   next(error);    };
 });
 
-router.put('/editOne/:id', /*
-  valid( noteIdSchema , "params" ),
-  valid( updateNoteSchema ),*/
+router.put('/editOne/:id', 
+  checkLogged,
+  valid( recipeIdSchema , "params" ),
+  valid( recipeSchema ),
   async (req,res,next)=>{
     try {
-      const { id }= req.params;
-      const { body: note }= req;
-      await editOneElement( id, note);
+      const { id: recipeID }= req.params;
+      const { body: recipe , session }= req;
+
+      const userID= session.passport.user.id;
+      await editOneElement( recipeID, recipe, userID );
       res.json({ data: true , mess: "Edit One elements successfully" });
     } catch (error) {   next(error);    };
   }
 );
 
-router.delete('/delOne/:id' /*, valid( noteIdSchema , "params" ) */, async (req,res,next)=>{
+router.delete('/delOne/:id' , checkLogged, valid( recipeIdSchema , "params" ) , async (req,res,next)=>{
   try {
-    const { id }= req.params;
-    await delOneElement( id );
+    const { id: recipeID }= req.params;
+    const { passport }= req.session;
+
+    const userID= passport.user.id;
+    await delOneElement( recipeID , userID );
     res.json({ data: true , mess: "Delete one element successfully" });
   } catch (error) {   next(error);    };
 });

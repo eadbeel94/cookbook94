@@ -1,15 +1,17 @@
 //import { useState , useEffect } from 'react'
 
+import '../css/ModalMessage.css';
+
 export default function ModalMessage(props) {
   const { children , show , theme , actConfirm, actClose }= props;
   return (
     <>
       <div className={ `modalM ${ show && 'modalM-show' }` } onClick={ actClose } >
-        <div className="modalM-content" onClick= { ev=> ev.stopPropagation() }>
-          <div className="modalM-quad">
+        <div className="modalM-content">
+          <div className="modalM-quad" onClick= { ev=> ev.stopPropagation() }>
 
             <div className="modalM-header">
-              COMPARER ALERT 
+              Cookbook 94 Alert 
               <div className="modalM-close">
                 <button onClick={ actClose } >✖</button>
               </div>

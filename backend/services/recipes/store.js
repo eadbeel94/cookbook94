@@ -5,15 +5,15 @@ class GroupFiles{
 
   };
 
-  async getAll(){
+  async getAll( userID ){
     try {
-      return await Recipe.find();
+      return await Recipe.find({ userID }).select('title list from datem image');
     } catch (error) { throw error };
   };
 
-  async getOne( id ){
+  async getOne( elementID , userID ){
     try {
-      return await Recipe.findById( id );
+      return await Recipe.findOne({ _id: elementID, userID });
     } catch (error) { throw error };
   };
 
@@ -24,17 +24,23 @@ class GroupFiles{
     } catch (error) { throw error };
   };
 
-  async editOne( id , group ){
+  async editOne( elementID , group ){
     try {
-      return await Recipe.findByIdAndUpdate( id , group );
+      return await Recipe.findByIdAndUpdate( elementID , group );
     } catch (error) { throw error };
   };
 
-  async delOne( id ){
+  async delOne( elementID ){
     try {
-      return await Recipe.findByIdAndRemove( id );
+      return await Recipe.findByIdAndRemove( elementID );
     } catch (error) { throw error };
   };
+
+  async validOne ( elementID , userID ){
+    try {
+      return await Recipe.findOne({ _id: elementID, userID }).select('_id');
+    } catch (error) { throw error };
+  }
 };
 
 module.exports= { GroupFiles }

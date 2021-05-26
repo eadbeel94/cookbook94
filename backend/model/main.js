@@ -8,7 +8,17 @@ const recipeSchema = new Schema({                           //Creo una tabla de 
   desc:   { type: String },
   image:  { type: String },
   datec:  { type: String },
-  datem:  { type: String }
+  datem:  { type: String },
+  userID: { type: String , required: true }
 });
 
+const userSchema = new Schema({
+  username: { type: String, required: true , unique: true },
+  fullname: { type: String },
+  email:    { type: String },
+  password: { type: String, required: true },
+  date:  { type: String }
+})
+
 module.exports.Recipe = model('recipes', recipeSchema);
+module.exports.User = model('users', userSchema);

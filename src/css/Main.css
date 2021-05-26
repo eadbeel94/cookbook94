@@ -1,0 +1,22 @@
+#Main{
+  min-height: 92vh;
+}
+
+#Main > div > div.column.is-12 > p{
+  font-family: var(--title);
+}
+
+#btn_add{
+  z-index: 5;
+}
+
+#btn_add > div{
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+}
+
+#btn_add button{
+  font-size: 50px;
+  border: var(--colorA) solid 0.25rem;
+}

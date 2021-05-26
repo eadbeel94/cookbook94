@@ -1,0 +1,54 @@
+#Register{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 92.5vh;
+}
+
+#Register > div{
+  width: 50%;
+  display: flex;
+  background-color: var(--colorB);
+}
+
+#Register form{
+  height: 100%;
+  width: 70%;
+  margin: auto;
+}
+
+#Register h5{
+  font-family: var(--title);
+}
+
+#Register input{
+  font-size: 1.1rem;
+  font-family: var(--bodyA);
+  line-height: normal;
+}
+
+#Register input::placeholder{
+  color: var(--colorE);
+}
+
+#Register label{
+  font-family: system-ui;
+  font-size: 1rem;
+}
+
+#Register button{
+  margin: auto;
+  width: 40%;
+  background-color: var(--colorB);
+  color: whitesmoke;
+  font-family: var(--title);
+  text-transform: uppercase;
+}
+
+#Register a > button{
+  margin: auto;
+  width: 40%;
+  background-color: var(--colorA);
+  color: whitesmoke;
+}

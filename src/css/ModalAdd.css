@@ -19,6 +19,8 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  animation-duration: 0.5s;
+  animation-name: changeY;
 }
 
 .modalA-quad{
@@ -36,8 +38,8 @@
   text-align: center;
   color: var(--colorE);
   padding: 0.5rem;
-  font-size: 1.5rem;
-  font-family: cursive;
+  font-size: 2rem;
+  font-family: var(--title);
 }
 
 .modalA-close{
@@ -77,8 +79,6 @@
   color: var(--colorE);
   padding: 0.25rem;
   font-size: 1.5rem;
-  font-family: cursive;
-
 }
 
 .recipe-left{
@@ -91,4 +91,44 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.modalA label{
+  font-family: var(--bodyA);
+  /*text-transform: uppercase;*/
+}
+
+.modalA-footer button{
+  font-family: var(--title);
+  text-transform: uppercase;
+  line-height: normal;
+  border-radius: 1rem 0 1rem 0;
+}
+
+.modalA-footer button:nth-child(1){
+  background-color: var(--colorR);
+  color: whitesmoke;
+}
+
+.modalA-footer button:nth-child(2){
+  background-color: var(--colorO);
+  color: whitesmoke;
+}
+
+.modalA-footer button:nth-child(3){
+  background-color: var(--colorG);
+  color: whitesmoke;
+}
+
+@keyframes changeY {
+  0%{
+    transform-origin: 0 0;
+    transform: translateY(-7.5%);
+    opacity: 0.1;
+  }
+  100%{
+    transform-origin: 0 0;
+    transform: translateY(0%);
+    opacity: 1;
+  }
 }

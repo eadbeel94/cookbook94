@@ -3,7 +3,14 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 92.5vh;
+}
+
+.login > div{
+  width: 80%;
+  height: 75%;
+  display: flex;
+  opacity: 0.98;
 }
 
 .login-left{
@@ -15,10 +22,123 @@
   border-radius: 3rem 0rem 0rem 0rem;
 }
 
+.login-left > div{
+  height: 100%;
+  width: 95%;
+  margin: auto;
+}
+
+.login-image{
+  background-color: var(--colorD);
+  width: 150px;
+  height: 150px;
+  margin: 2rem auto auto;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-image img{
+  width: 75%;
+  height: auto;
+}
+
+.login-left h5{
+  font-size: 2.5rem;
+}
+
+.login-left h6{
+  font-size: 3rem;
+  font-family: 'kaushan';
+}
+
+.login-icons{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1.5rem;
+}
+
+.login-icons a{
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  padding: 0;
+  background-color: whitesmoke;
+  border: var(--colorD) solid 0.2rem;
+}
+
+.login-icons a svg{
+  width: 65%;
+  height: auto;
+}
+
+.login-icons a:nth-child(1) svg{
+  color: #0570e6;
+}
+.login-icons a:nth-child(2) svg{
+  color: #0a66c2;
+}
+.login-icons a:nth-child(3) svg{
+  color: #5da9dd;
+}
+.login-icons a:nth-child(4) svg{
+  color: #ff0000;
+}
+
+
+
 .login-right{
   background-color: var(--colorD);
   width: 60%;
   height: 100%; 
   padding: 1.25rem;
   border-radius: 0rem 0rem 3rem 0rem;
+}
+
+.login-right form{
+  height: 100%;
+  width: 70%;
+  margin: auto;
+}
+
+.login-right svg{
+  width: 100px;
+  height: auto;
+  color: var(--colorA);
+}
+
+.login-right input{
+  font-size: 1.5rem;
+  background-color: var(--colorA);
+}
+
+.login-right input::placeholder{
+  color: var(--colorE);
+}
+
+.login-right button{
+  background-color: var(--colorB);
+  color: white;
+  font-family: var(--title);
+  text-transform: uppercase;
+  line-height: normal;
+  font-size: 1.25rem;
+  border: 0.15rem solid; 
+}
+
+.login-right button:hover,
+.login-right button:focus{
+  color: var(--colorE);
+  border-color: var(--colorE);
+}
+
+.login-right button:nth-child(1){
+  background-color: var(--colorE);
+  color: var(--colorA);
+}
+
+.login-right button:nth-child(1):hover{
+  color: whitesmoke;
+  border-color: whitesmoke;
 }

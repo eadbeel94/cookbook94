@@ -1,10 +1,15 @@
-import 'bulma/css/bulma.min.css'
+import 'bulma/css/bulma.min.css';
+import 'magic.css/dist/magic.min.css';
 import './css/App.css';
-import './css/Login.css';
-import './css/Main.css';
-import './css/OneCard.css';
-import './css/ModalAdd.css';
-import './css/ModalMessage.css';
+//import './css/Login.css';
+//import './css/Main.css';
+//import './css/Register.css';
+//import './css/Recipe.css';
+//import './css/OneCard.css';
+//import './css/ModalAdd.css';
+//import './css/ModalMessage.css';
+
+import back1 from './assets/images/back1.png';
 
 import {
   BrowserRouter as Router,
@@ -12,10 +17,11 @@ import {
   Route
 } from "react-router-dom";
 
-import Login from './components/Login.jsx';
-import Register from './components/Register.jsx';
-import Main from './components/Main.jsx';
-import Recipe from './components/Recipe.jsx';
+import Login from './views/Login.jsx';
+import Register from './views/Register.jsx';
+import Main from './views/Main.jsx';
+import Recipe from './views/Recipe.jsx';
+import View404 from './views/404.jsx';
 
 function App() { 
   return (
@@ -24,23 +30,27 @@ function App() {
         <div id="backgroundA">
           <div className="figureA"></div>
           <div className="figureB"></div>
+          <div className="figureC">
+            <p>Cookbook 94</p> 
+            <img src={ back1 } alt="" /> 
+          </div>
         </div>
 
         <Switch>
-
-          <Route path="/views/register">
-            <Register />
-          </Route>
-          <Route path="/views/main">
-            <Main />
-          </Route>
-          <Route path="/views/recipe">
-            <Recipe />
-          </Route>
-          <Route path="/">
-            <Login />
-          </Route>
+          <Route exact path="/" component= { Login } />
+          <Route exact path="/views/Login" component= { Login } />
+          <Route exact path="/views/main" component= { Main } />
+          <Route exact path="/views/register" component= { Register } />
+          <Route exact path="/views/recipe/:id" component= { Recipe } />
+          
+          <Route path="*" component= { View404 } />
         </Switch>
+
+        <footer>
+          <div>
+            Copyright © 2021. All right reserved. Designed by <a href="https://eadbeel94.web.app/" target="_tab" className="pl-2"> <strong> ECODE 2021</strong></a>
+          </div>
+        </footer>
       </div>
     </Router>
   )

@@ -1,0 +1,63 @@
+#Recipe{
+  min-height: 92.5vh;
+}
+
+#Recipe > div{
+  /*height: 92.5vh;*/
+  min-height: 100%;
+  display: grid;
+  align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+#Recipe .card{
+  background-color: #374b62f0;
+  color: #eee;
+  min-height: 50vh;
+  border-radius: 1rem 0 1rem 0;
+  border: var(--colorE) solid 0.25rem;
+}
+
+#Recipe .card header{
+  border-radius: 1rem 0 0 0;
+  background-color: var(--colorA);
+}
+
+#Recipe textarea[name="title"]{
+  font-size: 2.5rem;
+  padding: 1rem;
+}
+
+#Recipe .card footer{
+  border-top: 0;
+  border-radius: 0 0 1rem 0;
+  background-color: var(--colorA);
+}
+
+#Recipe .card button{
+  text-transform: uppercase;
+  font-family: var(--title);
+  line-height: normal;
+  border-radius: 0.5rem 0 0.5rem 0;
+}
+
+#Recipe .card button:nth-child(1){
+  background-color: var(--colorR);
+  color: white;
+}
+
+#Recipe .card button:nth-child(2){
+  background-color: var(--colorO);
+  color: dark;
+}
+
+#Recipe .card button:nth-child(3){
+  background-color: var(--colorG);
+  color: white;
+}
+
+#Recipe .date{
+  display: flex;
+  justify-content: space-between;
+}

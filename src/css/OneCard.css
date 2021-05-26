@@ -1,51 +1,63 @@
 
-.card{
+#OneCard .card{
   background-color: var(--colorA);
   color: whitesmoke;
 
   border-radius: 0rem 0rem 1rem 0rem;
-  border-color: #aaa;
+  border-color: var(--colorD);
   border-style: solid;
   border-width: 0.25rem 0.25rem 0.25rem 0;
 
-  height: 250px;
+  height: 270px;
+  opacity: 0.98;
 }
 
-.card p:nth-child(1){
+#OneCard .card p:nth-child(1){
   height: 80px;
   overflow: hidden;
+  font-family: var(--bodyA);
+  text-transform: uppercase;
+  padding-top: 0.25rem;
 }
 
-.card p:nth-child(2){
+#OneCard .card p:nth-child(2){
   height: 35px;
   overflow: hidden;
 }
 
-.card p:nth-child(3){
+#OneCard .card p:nth-child(3){
   height: 30px;
   overflow: hidden;
 }
 
-.card p:nth-child(4){
+#OneCard .card p:nth-child(4){
   height: 30px;
   overflow: hidden;
 }
 
-.card p:nth-child(5){
+#OneCard .card p:nth-child(5){
   overflow: hidden;
   align-items: center;
-  height: 50px;
+  height: 70px;
   display: grid;
 }
 
-.card-left{
+#OneCard button{
+  background-color: var(--colorD);
+  color: white;
+  font-family: var(--title);
+  font-size: 18px;
+  border-radius: 1rem 0 1rem 0;
+}
+
+#OneCard .card-left{
   background-color: var(--colorA);
   height: 100%;
   align-items: center;
   display: flex;
   
   border-radius: 1rem 0rem 0rem 0rem;
-  border-color: #aaa;
+  border-color: var(--colorD);
   border-style: solid;
   border-width: 0.25rem 0 0.25rem 0.25rem;
 }

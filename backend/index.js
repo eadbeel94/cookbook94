@@ -1,15 +1,18 @@
 const express= require('express');
+const session= require('express-session');            //Use express-session feartures
+const passport= require('passport');                  //Use passport local authentification methods
+const boom= require('@hapi/boom');
 const cors= require('cors');
 const { join }= require('path');
-const boom= require('@hapi/boom');
 
 //--------------------------- Config options ---------------------------
 const app= express();
 
 if( process.env.NODE_ENV !== 'production' ) require('dotenv').config();
 require('./model/connection.js');
+require('./utils/auth/passport.js');
 
-const { DEBUG, HOT_REL , PORT }= require('./utils/config.js');
+const { DEBUG , PORT }= require('./utils/config.js');
 
 if( DEBUG ) console.log= require('debug')('app:log');
 if( DEBUG ) console.error= require('debug')('app:error ->');
@@ -20,21 +23,14 @@ app.set('PORT' , PORT );
 app.use( cors() );
 app.use( express.json() );
 app.use( express.urlencoded({ extended: true }) );
-
-/*
-if( HOT_REL ){
-  console.log('hot reload activated' )
-  const { createServer } = require("livereload");
-  const connectLivereload = require("connect-livereload");
-  
-  const liveReloadServer = createServer();
-  liveReloadServer.watch( join(__dirname, './views') );
-  liveReloadServer.watch( join(__dirname, '../public') );
-  liveReloadServer.server.once("connection", () => setTimeout(() => liveReloadServer.refresh("/"), 100));
-  
-  app.use(connectLivereload());
-}
-*/
+app.use(session({                                     //Inicialize session
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { secure: false, maxAge: 1000 * 60 * 11 }    //Keep session value for 2 minutes
+}));
+app.use(passport.initialize());                       //Inicialize passport
+app.use(passport.session());                          //Inicialize session
 
 //--------------------------- Routes ---------------------------
 require('./routes/apiRoutes.js')(app);
@@ -42,7 +38,11 @@ require('./routes/apiRoutes.js')(app);
 //app.get('/', ( req , res ) => res.redirect('/views/') );    //redirect
 
 //--------------------------- Static files ---------------------------
-app.use( express.static( join(__dirname, '../public') ) );
+//app.use( express.static( join(__dirname, '../build') ) );
+app.use('/static', express.static(    join(__dirname, '../build/static')   ));
+app.get('*', function(req, res) {
+  res.sendFile('index.html', {  root: join(__dirname, '../build/')  } );
+});
 
 //--------------------------- Errors ---------------------------
 
@@ -53,7 +53,7 @@ app.use( function( req , res , next ) {
     } = boom.notFound(); 
     res.status( statusCode ).json( payload );
   }else
-    res.status(404).render("404.hbs");
+    res.status(404).redirect("/404");
 });
 
 const { logError, wrapError , cliErrorHandler, errorHandler }= require('./utils/middlewares/errorHandler.js');

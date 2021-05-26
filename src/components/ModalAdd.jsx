@@ -1,5 +1,7 @@
-import { useState , useEffect } from 'react';
+import { useState } from 'react';
 import { randomRecipe } from 'spoonacular-api-library';
+
+import '../css/ModalAdd.css';
 
 import ModalMessage from './ModalMessage.jsx';
 import { useModal } from '../hooks/main.jsx';
@@ -58,7 +60,7 @@ export default function ModalAdd(props) {
       initModalM();
     });
     closeAll();
-  }
+  };
 
   return (
     <>
@@ -117,7 +119,7 @@ export default function ModalAdd(props) {
                             <div className="control">
                               <input data-id={ind} value={ el } className="input is-rounded" type="text" placeholder="Username" onChange= { handleChangeList } />
                             </div>
-                            <label className="label has-text-white p-2">Ingredient A</label>
+                            <label className="label has-text-white p-2">Ingredient { String.fromCharCode(65 + ind) }</label>
                           </div>
                         </div> 
                       )
@@ -185,13 +187,14 @@ export default function ModalAdd(props) {
                       <img src= { recipe.image } alt="" />
                     </div>
                   </div>
+                  <label className="label has-text-white p-2" style={{ position: "relative" , bottom: "125px" }}>Preview</label>
                 </section>
               </div>
             </blockquote>
-            <blockquote className="modalM-footer">
-              <button className="button w-30 is-dark" onClick= { closeAll } >Close</button>
-              <button className="button w-30 is-dark mx-3" onClick= { genRandom } >Gen Random Recipe</button>
-              <button className="button w-30 is-dark" onClick= { createItem } >Save Recipe</button>
+            <blockquote className="modalA-footer">
+              <button className="button w-30" onClick= { closeAll } >Close</button>
+              <button className="button w-30 mx-3" onClick= { genRandom } >Gen Random Recipe</button>
+              <button className="button w-30" onClick= { createItem } >Save Recipe</button>
             </blockquote>
 
           </div>

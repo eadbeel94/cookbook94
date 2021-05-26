@@ -10,7 +10,14 @@ function withErrorStack( err, stack ) {
 };
 
 function logError(err, req, res, next) {
-  console.error(`[handlerError]${ err.message }`);
+  //console.error(`[handlerError] ${ err.message || err }`);
+  let error= "";
+  //if( err.stack ) error= err.stack;
+  if( err.stack )         error= err.stack.split('\n')[0];
+  else if ( err.message ) error= err.message;
+  else                    error= String(err);
+
+  console.error(`[handlerError] ${ error }`);
   next(err);
 };
 
@@ -38,7 +45,7 @@ function errorHandler(err, req, res, next) {
     } = err; 
   
     res.status( statusCode );
-    res.render("error.hbs", withErrorStack( payload , err.stack ) );
+    res.redirect("/404");
   };
 };
 
