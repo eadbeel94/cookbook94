@@ -29,10 +29,13 @@
   padding: 1rem;
 }
 
-#Recipe .card footer{
+#Recipe .card .footer2{
   border-top: 0;
   border-radius: 0 0 1rem 0;
   background-color: var(--colorA);
+  justify-content: center;
+  display: flex;
+  
 }
 
 #Recipe .card button{
@@ -40,6 +43,8 @@
   font-family: var(--title);
   line-height: normal;
   border-radius: 0.5rem 0 0.5rem 0;
+  width: 30%;
+  overflow: hidden;
 }
 
 #Recipe .card button:nth-child(1){
@@ -60,4 +65,51 @@
 #Recipe .date{
   display: flex;
   justify-content: space-between;
+}
+
+@media (max-width: 1050px) {
+  #Recipe{
+    max-width: calc(100% - 50px);
+    margin-inline: 0rem;
+  }
+  #Recipe .card-content{
+    padding: 0.25rem;
+  }
+  #Recipe img{
+    height: 125px;
+  }
+}
+
+@media (max-width: 650px) {
+  #Recipe .card .footer2{
+    display: block;
+    text-align: center;
+  }
+  #Recipe .card button{
+    width: 95%;
+  }
+  #Recipe .card header{
+    border-top: 0.25rem solid var(--colorE);
+    border-radius: 0.5rem 0 0 0;
+  }
+  #Recipe .card-header-title{
+    font-size: 1.5rem !important;
+    text-align: center;
+  }
+  #Recipe .column{
+    padding: 0.5rem;
+  }
+  #Recipe textarea[name="title"]{
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
+  #Recipe .date label:nth-child(2){
+    text-align: right;
+  }
+  #Recipe .is-size-5{
+    font-size: 1.1rem !important;
+  }
+  #Recipe .textarea, #Recipe input{
+    font-size: 0.9rem;
+  }
 }

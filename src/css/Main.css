@@ -17,9 +17,10 @@
 }
 
 #btn_add button{
-  font-size: 50px;
+  font-size: 45px;
   border: var(--colorA) solid 0.25rem;
 }
+
 
 @media (max-width: 1050px) {
   #Main{
@@ -27,6 +28,25 @@
     margin-inline: 0.25rem;
   }
   #Main .card-content{
-    padding: 0.85rem;
+    padding: 0.5rem;
+  }
+  #Main > div{
+    margin-bottom: 5.5rem !important;
+  }
+  #btn_add button{
+    font-size: 30px;
+  }
+  #btn_add > div{
+    bottom: 55px;
+    right: 10px;
+  }
+  #Main > div > div.column.is-12 > p {
+    font-size: 2.25rem !important;
+  }
+}
+
+@media (max-width: 600px) {
+  #Main > div > div.column.is-12 > p {
+    font-size: 1.5rem !important;
   }
 }

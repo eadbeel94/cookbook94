@@ -1,14 +1,9 @@
 const { Router }= require('express');
-const { authHandler } = require('../../utils/middlewares/authHandler.js');
-
 const router= Router();
 
-const { 
-  addOneElement,
-}= require('./index.js');
-
 const valid= require('../../utils/middlewares/validHandler.js');
-
+const { authHandler } = require('../../utils/middlewares/authHandler.js');
+const { addOneElement }= require('./index.js');
 const { userNewSchema }= require('../../utils/schema/validSchema.js');
 
 router.post('/addOne' , valid( userNewSchema ) , async (req,res,next)=>{

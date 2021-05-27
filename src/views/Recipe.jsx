@@ -111,6 +111,7 @@ export default function Recipe() {
       const { stat , mess }= await fetchSend( url );
 
       setMessATheme( mess , 2 );
+      window.history.replaceState(null, null, "/");
       stat && setTimeout(() => history.push('/'), 1000);
     });
   };
@@ -133,10 +134,10 @@ export default function Recipe() {
                   </p>
                 </header>
 
-                <div className="card-content">
-                  <div className="columns is-multiline">
+                <div className="card-content p-1">
+                  <div className="columns is-multiline m-0">
 
-                    <div className="column is-3">
+                    <div className="column is-3 has-text-centered">
                       <img src={ recipe.image } alt="" />
                     </div>
 
@@ -265,11 +266,11 @@ export default function Recipe() {
                   </div>
                 </div>
 
-                <footer className="card-footer py-1">
-                  <button className="button card-footer-item m-1" onClick= { deleteRecipe } >Delete ✖ </button>
-                  <button className="button card-footer-item m-1" onClick= { genRandom } > Gen Random Recipe 🔄 </button>
-                  <button className="button card-footer-item m-1" onClick= { editRecipe } > Save changes 💾 </button>
-                </footer>
+                <div className="footer2 py-1">
+                  <button className="button m-1" onClick= { deleteRecipe } >Delete ✖ </button>
+                  <button className="button m-1" onClick= { genRandom } > Gen Random Recipe 🔄 </button>
+                  <button className="button m-1" onClick= { editRecipe } > Save changes 💾 </button>
+                </div>
 
               </blockquote>
             }

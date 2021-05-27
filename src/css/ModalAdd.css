@@ -65,8 +65,6 @@
   padding: 1rem;
   font-family: sans-serif;
   color: whitesmoke;
-  /*min-height: px;
-  max-height: 500px;*/
   height: 75vh;
   overflow-y: auto;
 }
@@ -116,6 +114,7 @@
   text-transform: uppercase;
   line-height: normal;
   border-radius: 1rem 0 1rem 0;
+  overflow: hidden;
 }
 
 .modalA-footer button:nth-child(1){
@@ -144,4 +143,23 @@
     transform: translateY(0%);
     opacity: 1;
   }
+}
+
+@media (max-width: 800px) {
+  .modalA-quad{
+    width: 96%;
+  }
+  .recipe-preview{
+    position: unset;
+  }
+
+  .recipe-img img{
+    height: 125px;
+    margin: auto;
+  }
+  .recipe-left{
+    height: unset;
+    overflow: unset;
+  }
+  
 }

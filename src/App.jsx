@@ -43,7 +43,7 @@ function App() {
 
         <footer>
           <div>
-            Copyright © 2021. All right reserved. Designed by <a href="https://eadbeel94.web.app/" target="_tab" className="pl-2"> <strong> ECODE 2021</strong></a>
+            Copyright © 2021. All right reserved. Designed by <a href="/views/about" target="_tab" className="pl-2"> <strong> ECODE 2021</strong></a>
           </div>
         </footer>
       </div>

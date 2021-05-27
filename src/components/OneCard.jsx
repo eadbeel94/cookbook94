@@ -6,13 +6,13 @@ import '../css/OneCard.css';
 export default function OneCard(props) {
   const { recipe: el }= props;
   return (
-    <blockquote id="OneCard" className="columns is-multiline">
-      <section className="column is-4 pr-0">
+    <blockquote id="OneCard" className="columns is-multiline m-2">
+      <section className="column is-4 p-0">
         <div className="card-left">
           <img src= { el.image } alt="a"/>
         </div>
       </section>
-      <section className="column is-8 pl-0">
+      <section className="column is-8 p-0">
         <div className="card">
           <div className="card-content p-3">
             <p className="is-size-4"> { el.title } </p>

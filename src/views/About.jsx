@@ -1,5 +1,7 @@
 import Navbar from '../components/Navbar.jsx';
 
+import ecode from '../assets/images/ecode.png'
+
 import '../css/About.css';
 
 export default function About() {
@@ -19,10 +21,10 @@ export default function About() {
                     ABOUT WEB APP
                   </p>
                 </header>
-                <div className="card-content">
+                <div className="card-content about-first">
                   <div className="content has-text-justified">
                     Cookbook 94 can save all recipes that you need, if you have no idea about what recipe you wanna save, you can generate a random recipe
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, ut possimus? Quas fuga iste in ut ipsum odit debitis, nam magnam sequi quia hic nihil non qui ratione quam pariatur voluptate quod obcaecati! Vitae fuga similique tenetur at, placeat beatae.</p>
+                    <p className="pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, ut possimus? Quas fuga iste in ut ipsum odit debitis, nam magnam sequi quia hic nihil non qui ratione quam pariatur voluptate quod obcaecati! Vitae fuga similique tenetur at, placeat beatae.</p>
                   </div>
                 </div>
               </blockquote> 
@@ -38,6 +40,13 @@ export default function About() {
                 <div className="card-content">
                   <div className="content has-text-centered ">
                     This app was created using Javascript stack MERN and made by WEB developer Adbeel Estrada
+
+                    <div className="about-image">
+                      <img src={ ecode } alt="" />
+                    </div>
+
+                    <h5>See documentation: <a href="/static/doc/" target="_blank">documentation</a></h5>
+                    <h5>About developer: <a href="https://eadbeel94.web.app/" target="_blank">eadbeel.web.app</a></h5>
                   </div>
                 </div>
               </blockquote> 
@@ -52,8 +61,11 @@ export default function About() {
                 <div className="card-content">
                   <div className="content">
 
+                    <h4 className="has-text-centered has-text-white is-size-5">Some technologies used in this project</h4>
+
                     <section className="columns"> 
                       <div className="column is-6">
+
                         <ul className="menu-list">
 
                           <li>
@@ -78,6 +90,8 @@ export default function About() {
                               <li><a>Node JS</a></li>
                               <li><a>Express</a></li>
                               <li><a>Mongoose</a></li>
+                              <li><a>Passport</a></li>
+                              <li><a>B-crypt</a></li>
                             </ul>
                           </li>
 

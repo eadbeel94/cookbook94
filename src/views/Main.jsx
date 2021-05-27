@@ -25,8 +25,10 @@ export default function Main() {
     const url= `/recipes/getAll`;
     const { stat , data , mess , noauth }= await fetchSend( url );
 
-    noauth && history.push('/404');
     !stat && setMessAThemeM( mess , 2 );
+
+    noauth && setTimeout(() => history.push('/404'), 2000);
+
     stat && setUsername(data.username);
     stat && setRecipes(data.list);
   };
@@ -50,6 +52,7 @@ export default function Main() {
       const { stat , mess }= await fetchSend( url );
 
       setMessAThemeM( mess , 2 );
+      window.history.replaceState(null, null, "/");
       stat && setTimeout(() => history.push('/'), 1000);
     });
   };
@@ -62,14 +65,14 @@ export default function Main() {
 
         {
           recipes.length > 0 ? <blockquote id="Main" className="container mt-4">
-            <div className="columns is-multiline mb-3">
+            <div className="columns is-multiline m-0 mb-3">
 
               <div className="column is-12">
                 <p className="is-size-1 has-text-centered has-text-white">YOUR RECIPE LIST { username } 📖</p>
               </div>
               
               {
-                recipes.map( recipe => <div key= { `col-${recipe.id}` } className="column is-full is-half-tablet magictime slideDownReturn">
+                recipes.map( recipe => <div key= { `col-${recipe.id}` } className="column p-0 is-full is-half-tablet magictime slideDownReturn">
                     <OneCard recipe= { recipe } />
                   </div> 
                 )

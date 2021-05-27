@@ -12,8 +12,8 @@ function withErrorStack( err, stack ) {
 function logError(err, req, res, next) {
   //console.error(`[handlerError] ${ err.message || err }`);
   let error= "";
-  if( err.stack ) error= err.stack;
-  //if( err.stack )         error= err.stack.split('\n')[0];
+  //if( err.stack ) error= err.stack;
+  if( err.stack )         error= err.stack.split('\n')[0];
   else if ( err.message ) error= err.message;
   else                    error= String(err);
 

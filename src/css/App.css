@@ -249,7 +249,7 @@ footer a:hover{
 
 #tag404 h5{
   position: fixed;
-  top: 175px;
+  top: 180px;
   left: 50px;
   transform: rotate(-26deg);
   font-family: kaushan;
@@ -258,12 +258,34 @@ footer a:hover{
 
 #tag404 h6{
   position: fixed;
-  bottom: 125px;
+  bottom: 150px;
   right: 50px;
   transform: rotate(-26deg);
   font-family: kaushan;
   font-size: 3rem;
 }
+
+@media (max-width: 800px) {
+  #tag404 h5{
+    font-size: 3rem;
+  }
+  #tag404 h6{
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  #tag404 h5{
+    width: 300px;
+    top: 30px;
+    left: 60px;
+  }
+  #tag404 h6{
+    bottom: 90px;
+    right: 20px;
+  }
+}
+
 
 #lbl_Empty{
   height: 92.5vh;

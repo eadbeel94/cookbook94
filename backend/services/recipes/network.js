@@ -1,8 +1,11 @@
 const { Router }= require('express');
 const router= Router();
 
-const { checkLogged } = require('../../utils/middlewares/authHandler.js');
+const valid= require('../../utils/middlewares/validHandler.js');
+
 const { NOT_AUTH , TEST_ID }= require('../../utils/config.js');
+const { checkLogged } = require('../../utils/middlewares/authHandler.js');
+const { recipeIdSchema, recipeSchema }= require('../../utils/schema/validSchema.js');
 
 const { 
   getAllElements,
@@ -12,17 +15,16 @@ const {
   delOneElement
 }= require('./index.js');
 
-const valid= require('../../utils/middlewares/validHandler.js');
-
-const { recipeIdSchema, recipeSchema }= require('../../utils/schema/validSchema.js');
-
 router.get('/getAll', checkLogged , async (req,res,next)=>{
   try {
     const { passport }= req.session;
-    const data= { username: String( passport ? passport.user.fullname : 'UNKNOWN' ).toUpperCase()  };
 
     let userID= "";
-    if( passport ) userID= passport.user.id;
+    const data= { username: "UNKNOWN" };
+    if( passport && passport.user ){
+      data.username= String( passport.user.fullname ).toUpperCase();
+      userID= passport.user.id;
+    };
     if( NOT_AUTH ) userID= TEST_ID;
 
     const list= await getAllElements( userID );
@@ -86,8 +88,8 @@ router.delete('/delOne/:id' , checkLogged, valid( recipeIdSchema , "params" ) , 
     const { passport }= req.session;
 
     let userID= "";
-    if( session.passport )  userID= passport.user.id;
-    if( NOT_AUTH )          userID= TEST_ID;
+    if( passport )  userID= passport.user.id;
+    if( NOT_AUTH )  userID= TEST_ID;
 
     await delOneElement( recipeID , userID );
     res.json({ data: true , mess: "Delete one element successfully" });
