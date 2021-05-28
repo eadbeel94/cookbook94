@@ -1,26 +1,66 @@
+/** @namespace view/Main */
+
 import { useState , useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 
 import '../css/Main.css';
 
-import ModalMessage from '../components/ModalMessage.jsx';
-import ModalAdd from '../components/ModalAdd.jsx';
-import OneCard from '../components/OneCard.jsx';
-import Empty from '../components/Empty.jsx';
-import Navbar from '../components/Navbar.jsx';
+import ModalMessage from '../components/ModalMessage.js';
+import ModalAdd from '../components/ModalAdd.js';
+import OneCard from '../components/OneCard.js';
+import Empty from '../components/Empty.js';
+import Navbar from '../components/Navbar.js';
 
-import { useModal } from '../hooks/main.jsx';
+import { useModal } from '../hooks/main.js';
 import fetchSend from '../js/helper.js';
 
+/**
+ * Component for showing main view that contain all recipe cards
+ * @component
+ * @returns JSX Element that include view main
+ */
+function Main() {
 
-export default function Main() {
-
+  /** 
+   * Inlcude methods to redirect
+   * @const history
+   * @type {useHistory}  
+   * @memberof view/Main
+   */
   const history= useHistory();
+  /** 
+   * State variable that is used in modal message component
+   * @constant modalM-setMessAThemeM-setModalM-initModalM
+   * @type {useModal}  
+   * @memberof view/Main
+   */
   const [ modalM , , , , setMessAThemeM , setModalM , initModalM ]= useModal({ req: false, mess: "" , theme: 0 , cb: ()=>{} });
+  /** 
+   * State variable that show/hide modal add recipe
+   * @constant showModalAdd-setShowModalAdd
+   * @type {useState}  
+   * @memberof view/Main
+   */  
   const [ showModalAdd, setShowModalAdd ] = useState(false);
+  /** 
+   * State variable that include a array object with recipe information 
+   * @constant recipes-setRecipes
+   * @type {useState}  
+   * @memberof view/Main
+   */  
   const [ recipes, setRecipes ] = useState([]);
+  /** 
+   * State variable that include user logged name
+   * @constant username-setUsername
+   * @type {useState}  
+   * @memberof view/Main
+   */  
   const [ username, setUsername] = useState("");
-
+  /**
+   * Request to backend all recipes
+   * @function getAllRecipes
+   * @memberof view/Main
+   */
   const getAllRecipes= async() => {
     const url= `/recipes/getAll`;
     const { stat , data , mess , noauth }= await fetchSend( url );
@@ -32,18 +72,30 @@ export default function Main() {
     stat && setUsername(data.username);
     stat && setRecipes(data.list);
   };
-
+  /**
+   * Load recipes when user enter in this view
+   * @callback useEffect->getAllRecipes
+   * @memberof view/Main
+   */
   useEffect(() => {
     getAllRecipes();
   }, []);
-
+  /**
+   * Send request to backend for create a recipe
+   * @function createRecipe
+   * @memberof view/Main
+   */
   const createRecipe= async (send)=>{
     const url= `/recipes/addOne`;
     const { stat , data , mess }= await fetchSend( url , "POST" , send );
     setMessAThemeM( mess , 2 );
     stat && setRecipes(data);
   };
-
+  /**
+   * Send backend to request logout
+   * @function reqLogout
+   * @memberof view/Main
+   */
   const reqLogout= ()=>{
     setModalM("Do you wanna close this session?",3, async () =>{
       initModalM();
@@ -102,3 +154,5 @@ export default function Main() {
     </>
   );
 };
+
+export default Main;

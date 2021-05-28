@@ -1,3 +1,5 @@
+/** @namespace route/recipe */
+
 const { Router }= require('express');
 const router= Router();
 
@@ -15,6 +17,15 @@ const {
   delOneElement
 }= require('./index.js');
 
+/**
+ * Get all Recipes using a specific user ID, use middleware to check log in status
+ *
+ * @name getAll
+ * @path {GET} /api/recipes/getAll
+ * @response {object} data contain group of recipes and log gin feedback status
+ * @response {string} mess contain status message
+ * @memberof route/recipe
+ */
 router.get('/getAll', checkLogged , async (req,res,next)=>{
   try {
     const { passport }= req.session;
@@ -34,7 +45,16 @@ router.get('/getAll', checkLogged , async (req,res,next)=>{
     res.json({ data , mess: "Get all elements successfully" });
   } catch (error) {   next(error);    };
 });
-
+/**
+ * Get all Recipes using a specific user ID and recipe ID, use middleware to check log in status and validation form
+ *
+ * @name getOne
+ * @path {GET} /api/recipes/getOne
+ * @params {string} :id recipe Identificator
+ * @response {object} data contain the recipe
+ * @response {string} mess contain status message
+ * @memberof route/recipe
+ */
 router.get('/getOne/:id' , checkLogged, valid( recipeIdSchema , "params" ) , async (req,res,next)=>{
   try {
     const { id: recipeID }= req.params;
@@ -48,7 +68,16 @@ router.get('/getOne/:id' , checkLogged, valid( recipeIdSchema , "params" ) , asy
     res.json({ data , mess: "Get one element successfully" });
   } catch (error) {   next(error);    };
 });
-
+/**
+ * Save a recipe into database, use middleware to check log in status and validation form
+ *
+ * @name addOne
+ * @path {POST} /api/recipes/addOne
+ * @body {object} recipe Include all recipe fields  
+ * @response {object} data contain all recipes
+ * @response {string} mess contain status message
+ * @memberof route/recipe
+ */
 router.post('/addOne' , checkLogged , valid( recipeSchema ) , async (req,res,next)=>{
   try {
     const { body: recipe , session }= req;
@@ -62,7 +91,17 @@ router.post('/addOne' , checkLogged , valid( recipeSchema ) , async (req,res,nex
     res.json({ data , mess: "Add one element successfully" });
   } catch (error) {   next(error);    };
 });
-
+/**
+ * Edit a recipe into database, use middleware to check log in status and validation form
+ *
+ * @name editOne
+ * @path {PUT} /api/recipes/editOne
+ * @params {string} :id recipe Identificator
+ * @body {object} recipe Include all recipe fields  
+ * @response {object} data
+ * @response {string} mess contain status message
+ * @memberof route/recipe
+ */
 router.put('/editOne/:id', 
   checkLogged,
   valid( recipeIdSchema , "params" ),
@@ -81,7 +120,16 @@ router.put('/editOne/:id',
     } catch (error) {   next(error);    };
   }
 );
-
+/**
+ * Delete a recipe into database, use middleware to check log in status and validation form
+ *
+ * @name delOne
+ * @path {DELETE} /api/recipes/delOne
+ * @params {string} :id recipe Identificator
+ * @response {object} data
+ * @response {string} mess contain status message
+ * @memberof route/recipe
+ */
 router.delete('/delOne/:id' , checkLogged, valid( recipeIdSchema , "params" ) , async (req,res,next)=>{
   try {
     const { id: recipeID }= req.params;

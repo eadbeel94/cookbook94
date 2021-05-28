@@ -1,9 +1,23 @@
+/** @namespace service/user */
+
 const bcrypt = require('bcrypt');
 const m= require('dayjs');
-const { GroupFiles }= require('./store.js');
-const store= new GroupFiles();
+const { GroupUser }= require('./store.js');
+
+/**
+ * Call methods to modify values into collection user
+ * @const {class} store
+ * @memberof service/user
+ */
+const store= new GroupUser();
 
 module.exports= {
+  /**
+   * Check if password is correct, then encrypt password and save into database
+   * @function addOneElement
+   * @memberof service/user
+   * @param {object} cont include all user data information
+   */
   addOneElement: async ( cont ) => {
     const { fullname, username: user, password: pass, confirm } = cont;
     if( pass.length >= 3 && confirm.length >= 3 && pass == confirm ){

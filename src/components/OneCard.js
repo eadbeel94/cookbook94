@@ -1,9 +1,15 @@
-//import React from 'react'
 import { Link } from "react-router-dom";
 
 import '../css/OneCard.css';
 
-export default function OneCard(props) {
+/**
+ * Component for showing a Card with recipe information
+ * @component
+ * @param {object} props Group elements that inicialize this component
+ * @param {object} props.recipe include all information about recipe
+ * @returns JSX Element that include a form
+ */
+function OneCard(props) {
   const { recipe: el }= props;
   return (
     <blockquote id="OneCard" className="columns is-multiline m-2">
@@ -30,3 +36,5 @@ export default function OneCard(props) {
     </blockquote>
   );
 };
+
+export default OneCard;

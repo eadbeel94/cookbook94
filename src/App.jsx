@@ -7,16 +7,22 @@ import back1 from './assets/images/back1.png';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Link
 } from "react-router-dom";
 
-import Login from './views/Login.jsx';
-import Register from './views/Register.jsx';
-import Main from './views/Main.jsx';
-import Recipe from './views/Recipe.jsx';
-import View404 from './views/404.jsx';
-import About from './views/About.jsx';
+import Login from './views/Login.js';
+import Register from './views/Register.js';
+import Main from './views/Main.js';
+import Recipe from './views/Recipe.js';
+import View404 from './views/404.js';
+import About from './views/About.js';
 
+/**
+ * Component that include all project
+ * @component
+ * @returns JSX Element that include all
+ */
 function App() { 
   return (
     <Router>
@@ -43,7 +49,7 @@ function App() {
 
         <footer>
           <div>
-            Copyright © 2021. All right reserved. Designed by <a href="/views/about" target="_tab" className="pl-2"> <strong> ECODE 2021</strong></a>
+            Copyright © 2021. All right reserved. Designed by <Link to="/views/about" target="_blank" className="pl-2"> <strong> ECODE 2021</strong></Link>
           </div>
         </footer>
       </div>
@@ -52,3 +58,5 @@ function App() {
 };
 
 export default App;
+
+//<a href="/views/about" target="_tab" className="pl-2"> <strong> ECODE 2021</strong></a>

@@ -1,3 +1,5 @@
+/** @namespace view/Recipe */
+
 import { useState , useEffect } from 'react';
 import { useHistory , useParams } from "react-router-dom";
 import { randomRecipe } from 'spoonacular-api-library';
@@ -5,21 +7,65 @@ import m from 'dayjs';
 
 import '../css/Recipe.css';
 
-import ModalMessage from '../components/ModalMessage.jsx';
-import Navbar from '../components/Navbar.jsx';
+import ModalMessage from '../components/ModalMessage.js';
+import Navbar from '../components/Navbar.js';
 
-import { useModal } from '../hooks/main.jsx';
+import { useModal } from '../hooks/main.js';
 import fetchSend from '../js/helper.js';
 
+/** 
+ * Initial state for each input/criterion into form
+ * @const {object} initRecipe
+ * @memberof view/Recipe
+ */
 const initRecipe= { title: "" , list: [""] , inst: "" , from: "" , desc: "" , image: "" };
-export default function Recipe() {
 
+/**
+ * Component for showing a view that contain recipe form
+ * @component
+ * @returns JSX Element that include view Recipe
+ */
+function Recipe() {
+  /** 
+   * Include methods to redirect
+   * @const history
+   * @type {useHistory}  
+   * @memberof view/Recipe
+   */
   const history = useHistory();
+  /** 
+   * Include methods to get route information params
+   * @const recipeID
+   * @type {useParams}  
+   * @memberof view/Recipe
+   */
   const { id: recipeID }= useParams();
+  /** 
+   * State variable that is used in modal message component
+   * @constant modalM-setMessATheme-setModalM-initModalM
+   * @type {useModal}  
+   * @memberof view/Recipe
+   */
   const [ modalM , , , , setMessATheme , setModalM , initModalM ]= useModal({ req: false, mess: "" , theme: 0 , cb: ()=>{} });
+  /** 
+   * State variable that include a object with recipe information 
+   * @constant recipes-setRecipes
+   * @type {useState}  
+   * @memberof view/Recipe
+   */  
   const [recipe, setRecipe] = useState(initRecipe);
+  /** 
+   * State variable that include a string with quantity of elements into ingredients field
+   * @constant mix-setMix
+   * @type {useState}  
+   * @memberof view/Recipe
+   */
   const [mix, setMix] = useState(initRecipe.list.length);
-
+  /**
+   * Request to backend a recipe
+   * @function getAllRecipes
+   * @memberof view/Recipe
+   */
   const getOneRecipe= async() => {
     const url= `/recipes/getOne/${ recipeID }`
     const { stat , data , noauth }= await fetchSend( url );
@@ -35,11 +81,19 @@ export default function Recipe() {
       setMix( data.list.length );
     }
   };
-
+  /**
+   * Load recipe when user enter in this view
+   * @callback useEffect->getOneRecipe
+   * @memberof view/Recipe
+   */
   useEffect(() => {
     getOneRecipe();
   }, []);
-
+  /**
+   * Using spoonacular this funcion fill recipe state and after that fill form
+   * @function genRandom
+   * @memberof view/Recipe
+   */
   const genRandom= async ()=>{
     const { data }= await randomRecipe.get();
     const { title, extendedIngredients, instructions, creditsText, sourceUrl, image }= data.recipes[0];
@@ -56,29 +110,53 @@ export default function Recipe() {
     });
     setMix( extendedIngredients.length );
   };
-
+  /**
+   * if user change input value, then save value in state
+   * @function setQuantity
+   * @param {event} ev user change value on input event
+   * @memberof view/Recipe
+   */
   const setQuantity= ({ target })=>{
     let newValue= Number(target.value);
     if( newValue > 30 ) newValue= 30;
     if( 0 > newValue ) newValue = 1;
     setMix(newValue);
   };
-
+  /**
+   * if user press enter in input quantity ingredients, then will create n quantity of inputs for each ingredient
+   * @function setQuantity
+   * @param {event} ev user change value on input event
+   * @memberof view/Recipe
+   */
   const setList= ({ keyCode })=>{
     if( keyCode === 13 )
       setRecipe({ ...recipe , list: (new Array( mix )).fill("") });
   };
-
+  /**
+   * for each change into a input, this value will save into state recipe.list
+   * @function handleChangeList
+   * @param {Event} ev user modify any input event
+   * @memberof view/Recipe
+   */
   const handleChangeList= ({target})=>{
     const newList= [ ...recipe.list ];
     newList[Number(target.dataset.id)]= target.value;
     setRecipe({ ...recipe , list: newList });
   };
-
+  /**
+   * for each change into a input, this value will save into state recipe
+   * @function handleChangeInps
+   * @param {Event} ev user modify any input event
+   * @memberof view/Recipe
+   */
   const handleChangeInps= ({target})=>{
     setRecipe({ ...recipe , [target.name]: target.value });
   };
-
+  /**
+   * If use press btn save. then send cmd to backend and aftwer that saved these changes
+   * @function editRecipe
+   * @memberof view/Recipe
+   */
   const editRecipe= () =>{
     setModalM("Do you wanna save these changes?" , 3 , async ()=>{
       const send = { ...recipe };
@@ -91,7 +169,11 @@ export default function Recipe() {
       //stat && setTimeout(() => history.go(0), 1000);
     });
   };
-
+  /**
+   * If use press btn delete. then send cmd to backend and after that saved these changes
+   * @function deleteRecipe
+   * @memberof view/Recipe
+   */
   const deleteRecipe= () =>{
     setModalM("Do you wanna delete this recipe?" , 3 , async ()=>{
       const url= `/recipes/delOne/${ recipeID }`
@@ -102,7 +184,11 @@ export default function Recipe() {
       stat && setTimeout(() => history.push('/views/main'), 1000);
     });
   };
-
+  /**
+   * Send backend to request logout
+   * @function reqLogout
+   * @memberof view/Recipe
+   */
   const reqLogout= ()=>{
     setModalM("Do you wanna close this session?",3, async () =>{
       initModalM();
@@ -288,5 +374,7 @@ export default function Recipe() {
         { modalM.mess }
       </ModalMessage>
     </>
-  )
-}
+  );
+};
+
+export default Recipe;

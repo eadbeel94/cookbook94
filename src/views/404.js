@@ -1,8 +1,11 @@
-//import React from 'react'
+import Navbar from '../components/Navbar.js';
 
-import Navbar from '../components/Navbar.jsx';
-
-export default function View404() {
+/**
+ * Component for showing a view that contain 404 message
+ * @component
+ * @returns JSX Element that include view 404
+ */
+function View404() {
   return (
     <>
       <div className="d-flex">
@@ -18,5 +21,7 @@ export default function View404() {
         </div>
       </div>
     </>
-  )
+  );
 };
+
+export default View404;

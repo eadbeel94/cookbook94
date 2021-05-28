@@ -1,8 +1,17 @@
-//import { useState , useEffect } from 'react'
-
 import '../css/ModalMessage.css';
 
-export default function ModalMessage(props) {
+/**
+ * Component for showing a Modal with a message.
+ * @component
+ * @param {object} props Group elements that inicialize this component
+ * @param {string} props.children Inlcude message to show in this modal
+ * @param {boolean} props.show if value is true, then show this component
+ * @param {number}  props.theme if value is 2 then show only button, with 3 show two buttons
+ * @param {function} props.actConfirm function that execute when user press confirm button
+ * @param {function} props.actClose function that close this component
+ * @returns JSX Element that include a Modal
+ */
+function ModalMessage(props) {
   const { children , show , theme , actConfirm, actClose }= props;
   return (
     <>
@@ -35,5 +44,7 @@ export default function ModalMessage(props) {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
+
+export default ModalMessage;

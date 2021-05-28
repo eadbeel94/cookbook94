@@ -1,8 +1,19 @@
+/** @namespace util/middleware/auth */
+
 const passport= require('passport');
 const boom= require('@hapi/boom');
 
 const { NOT_AUTH }= require('../../utils/config.js');
 
+/**
+ * Middleware that use passport local strategy to check user credential
+ * @function authHandler
+ * @memberof util/middleware/auth
+ * @param {object} req server req object
+ * @param {object} res server res object
+ * @param {function} next server next object
+ * @returns {function} return next() method 
+ */
 function authHandler(req,res,next){
   return passport.authenticate('local', 
     (err, user, info) => {
@@ -24,6 +35,15 @@ function authHandler(req,res,next){
   )(req,res,next)
 };
 
+/**
+ * Middleware that evualuate auth status
+ * @function
+ * @memberof util/middleware/auth
+ * @param {object} req server req object
+ * @param {object} res server res object
+ * @param {function} next server next object
+ * @returns {function} return next method 
+ */
 function checkLogged(req, res, next) {
   if(req.isAuthenticated() || NOT_AUTH ) return next();
   

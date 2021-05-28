@@ -1,3 +1,5 @@
+/** @namespace view/Login */
+
 import { useState } from 'react';
 import { Link , useHistory } from "react-router-dom";
 
@@ -10,17 +12,45 @@ import { ReactComponent as Icon3 } from '../assets/images/twitter.svg';
 import { ReactComponent as Icon4 } from '../assets/images/youtube.svg';
 import { ReactComponent as Icon5 } from '../assets/images/person.svg';
 
-import ModalMessage from '../components/ModalMessage.jsx';
+import ModalMessage from '../components/ModalMessage.js';
 
-import { useModal } from '../hooks/main.jsx';
+import { useModal } from '../hooks/main.js';
 import fetchSend from '../js/helper.js';
 
-export default function Login() {
+/**
+ * Component for showing a view that contain login form
+ * @component
+ * @returns JSX Element that include view login
+ */
+function Login() {
 
+  /** 
+   * Include methods to redirect
+   * @const history
+   * @type {useHistory}  
+   * @memberof view/Login
+   */
   const history = useHistory();
+  /** 
+   * State variable that is used in modal message component
+   * @constant modalM-setMessAThemeM-initModalM
+   * @type {useModal}  
+   * @memberof view/Login
+   */
   const [ modalM , , , , setMessAThemeM , , initModalM ]= useModal({ req: false, mess: "" , theme: 0 , cb: ()=>{} });
+  /** 
+   * State variable that include user and password
+   * @constant userInfo-setUserInfo
+   * @type {useState}  
+   * @memberof view/Login
+   */
   const [userInfo, setUserInfo] = useState({ username: "" , password: "" });
-
+  /**
+   * if user press btn login, send fetch cmd to backend and process the request
+   * @function reqLogin
+   * @param {event} ev user press button event
+   * @memberof view/Login
+   */
   const reqLogin= async (ev)=>{
     ev.preventDefault();
     const url= `/users/auth`;
@@ -29,7 +59,12 @@ export default function Login() {
     setMessAThemeM( mess , 2 );
     stat && setTimeout(() => history.push('/views/main'), 1000);
   };
-
+  /**
+   * for each change into a input, this value will save into state userInfo
+   * @function handleChange
+   * @param {Event} ev user modify any input event
+   * @memberof view/Login
+   */
   const handleChange= ({ target })=>{
     setUserInfo({ ...userInfo , [target.name]: target.value })
   };
@@ -113,3 +148,5 @@ export default function Login() {
     </>
   );
 };
+
+export default Login;

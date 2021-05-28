@@ -1,20 +1,55 @@
+/** @namespace view/Register */
+
 import { useState } from 'react';
 import { Link , useHistory } from "react-router-dom";
 
 import '../css/Register.css';
 
-import ModalMessage from '../components/ModalMessage.jsx';
+import ModalMessage from '../components/ModalMessage.js';
 
-import { useModal } from '../hooks/main.jsx';
+import { useModal } from '../hooks/main.js';
 import fetchSend from '../js/helper.js';
-
+/** 
+ * Initial state for each input/criterion into form
+ * @const {object} initUserInfo
+ * @memberof view/Register
+ */
 const initUserInfo= { fullname: "" , username: "" , password: "" , confirm: "" , email: "" };
-export default function Login() {
 
+/**
+ * Component for showing a Form with fields for create a new element.
+ * @component
+ * @returns JSX Element that include a form
+ */
+function Register() {
+
+  /** 
+   * Include methods to redirect
+   * @const history
+   * @type {useHistory}  
+   * @memberof view/Register
+   */
   const history= useHistory();
+  /** 
+   * State variable that include user and password
+   * @constant userInfo-setUserInfo
+   * @type {useState}  
+   * @memberof view/Register
+   */
   const [userInfo, setUserInfo] = useState(initUserInfo);
+  /** 
+   * State variable that is used in modal message component
+   * @constant modalM-setMessAThemeM-initModalM
+   * @type {useModal}  
+   * @memberof view/Register
+   */
   const [ modalM , , , , setMessAThemeM , , initModalM ]= useModal({ req: false, mess: "" , theme: 0 , cb: ()=>{} });
-
+  /**
+   * if user press btn create, send fetch cmd to backend and process the request
+   * @function createUser
+   * @param {event} ev user press button event
+   * @memberof view/Register
+   */
   const createUser= async (ev) =>{
     ev.preventDefault();
     const url= `/users/addOne`;
@@ -27,7 +62,11 @@ export default function Login() {
       setTimeout(() => history.push('/'), 2000);
     }
   };
-
+  /**
+   * for each change into a input, this value will save into state userInfo
+   * @function handleChange
+   * @memberof view/Register
+   */
   const handleChange= ({ target })=>{
     setUserInfo({ ...userInfo , [target.name]: target.value })
   };
@@ -104,3 +143,5 @@ export default function Login() {
     </>
   );
 };
+
+export default Register;

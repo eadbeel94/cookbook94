@@ -1,5 +1,23 @@
+/** @namespace view/helper */
+
+/**
+ * Send information to server using fetch fcn 
+ * @function fetchSend
+ * @param {string} url endopoint server where send query
+ * @param {string} type "GET", "POST" , "PUT" OR "DELETE"
+ * @param {object} send group information send to server
+ * @memberof view/helper
+ * @returns {{ stat: boolean, data: any, message: string, noauth: boolean }} give status, data, a messsage and status auth
+ */
 const fetchSend= async( url="" , type="" , send )=>{
 
+  /**
+   * Process object error in a message
+   * @function getError
+   * @param {error} error object type error
+   * @memberof front/helper
+   * @returns {string} error in message string
+   */
   const getError= ( error ) => {
     let message= "";
     if( typeof error === 'object' && error !== null ){
@@ -9,16 +27,45 @@ const fetchSend= async( url="" , type="" , send )=>{
     return message;
   };
 
+  /** 
+   * URL endpoint
+   * @const {string} IP
+   * @memberof front/helper
+   */
   const IP= process.env.NODE_ENV !== 'production' ? `http://localhost:3001/api` : `/api`
 
+  /** 
+   * End state after process endopoint response
+   * @type {boolean}
+   * @memberof front/helper
+   */
   let stat= false;
+  /** 
+   * If user not logged succesfully, this value will be false
+   * @type {boolean}
+   * @memberof front/helper
+   */
   let noauth;
+  /** 
+   * Group information got from server
+   * @type {object}
+   * @memberof front/helper
+   */
   let data= {};
+  /** 
+   * status detail message
+   * @type {string}
+   * @memberof front/helper
+   */
   let mess= "";
   try {
+    /** 
+     * fetch configuration object
+     * @const {string} config
+     * @memberof front/helper
+     */
     const config= { method: type || "GET" };
     config.headers= { 'X-Requested-With': 'XMLHttpRequest' };
-    //config.withCredentials= true;
     send && ( config.body= JSON.stringify(send) );
     send && ( config.headers= { ...config.headers, 'Content-Type': 'application/json' }  );
 

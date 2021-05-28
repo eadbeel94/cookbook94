@@ -1,10 +1,18 @@
 const { User }= require('../../model/main.js');
 
-class GroupFiles{
+/** 
+ * CRUD operation to change values into user collection
+ * @memberof service/user
+ **/
+class GroupUser{
+  /** constructor not used */
   constructor(){
 
   };
-
+  /**
+   * Save new user
+   * @param {object} group object with all user's fields
+   */
   async addOne(group){
     try {
       const newUser= new User(group);
@@ -14,4 +22,4 @@ class GroupFiles{
 
 };
 
-module.exports= { GroupFiles };
+module.exports= { GroupUser };

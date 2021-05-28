@@ -4,4 +4,6 @@
 other
 public
 .env
-src/assets
+src/assets/fonts
+src/assets/images
+doc/

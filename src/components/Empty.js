@@ -1,6 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
-export default function Empty(props) {
+/**
+ * Component for showing details about empty message.
+ * @component
+ * @returns JSX Element that include a message
+ */
+function Empty(props) {
   const { name }= props;
 
   const [show, setShow] = useState(false)
@@ -18,5 +23,7 @@ export default function Empty(props) {
         <p className="emoji1">😔</p>
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default Empty;

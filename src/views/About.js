@@ -1,10 +1,14 @@
-import Navbar from '../components/Navbar.jsx';
+import Navbar from '../components/Navbar.js';
 
 import ecode from '../assets/images/ecode.png'
-
 import '../css/About.css';
 
-export default function About() {
+/**
+ * Component for showing a view about
+ * @component
+ * @returns JSX Element that include view About
+ */
+function About() {
   return (
     <>
       <div className="d-flex" style={{ minHeight: "92.5vh" }}>
@@ -108,5 +112,7 @@ export default function About() {
 
       </div>
     </>
-  )
-}
+  );
+};
+
+export default About;

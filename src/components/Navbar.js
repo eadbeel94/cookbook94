@@ -1,4 +1,3 @@
-//import React from 'react'
 import { Link , useLocation } from "react-router-dom";
 
 import '../css/Navbar.css';
@@ -8,7 +7,14 @@ import { ReactComponent as Icon2 } from '../assets/images/file-text.svg';
 import { ReactComponent as Icon3 } from '../assets/images/house-door.svg';
 import { ReactComponent as Icon4 } from '../assets/images/box-arrow-in-right.svg';    
 
-export default function Navbar(props) {
+/**
+ * Component for showing a left navbar with buttons
+ * @component
+ * @param {object} props Group elements that inicialize this component
+ * @param {function} props.actClose function that execute when user press button logout
+ * @returns JSX Element that include a form
+ */
+function Navbar(props) {
   const { actLogout }= props;
   const { pathname }= useLocation();
 
@@ -29,3 +35,5 @@ export default function Navbar(props) {
     </nav>
   );
 };
+
+export default Navbar;
