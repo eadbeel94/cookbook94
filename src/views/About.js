@@ -80,6 +80,7 @@ function About() {
                               <li><a>Bulma CSS</a></li>
                               <li><a>Magic CSS</a></li>
                               <li><a>Spoonacular API</a></li>
+                              <li>  <a>Anything else</a> </li>
                             </ul>
                           </li>
 
